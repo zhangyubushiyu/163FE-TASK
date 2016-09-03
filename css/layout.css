@@ -274,8 +274,7 @@
 /*小于1205px*/
 @media only screen and (max-width:1205px) {
 	body {
-		max-width: 1205px;
-		  overflow-x: hidden;
+		min-width: 1204px;
 	}
 	.header,.bodymax{
 		width: 962px;
@@ -308,7 +307,7 @@
 	}
 	.banner .banner-box{
 		margin:0 auto;
-		/*position: initial;*/
+		
 	}
 	.banner ul li{
 		width: 1364px;
@@ -323,13 +322,6 @@
 	}
 	.scroll-img li img {
 		width: 234px;
-	}
-}
-/*大于1205px*/
-@media only screen and (min-width: 1205px) {
-	body {
-    overflow-x: hidden;
-    margin: 0 auto;
 	}
 }
 

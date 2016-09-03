@@ -274,6 +274,7 @@
 /*小于1205px*/
 @media only screen and (max-width:1205px) {
 	body {
+		overflow-x:auto;
 		min-width: 1204px;
 	}
 	.header,.bodymax{

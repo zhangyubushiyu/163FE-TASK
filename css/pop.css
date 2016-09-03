@@ -58,6 +58,7 @@
 
 .login-win input {
 	line-height: 39px;
+	height: 39px;
 	width: 241px;
 	border: none;
 	font-size: 14px;

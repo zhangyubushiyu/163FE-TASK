@@ -135,7 +135,7 @@ function contenrAjax(pageNo, type, psize) {
 					contenrHtml += '<li class="kc-list">\
 								<a href="' + JsonObj[i].providerLink + '">\
 									<div class="kc">\
-										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" ></div>\
+										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" /></div>\
 										<div class="l-txt">\
 											<h3 class="">' + JsonObj[i].name + '</h3>\
 											<h4 class="">' + JsonObj[i].categoryName + '</h4>\
@@ -145,7 +145,7 @@ function contenrAjax(pageNo, type, psize) {
 									</div>\
 									<div class="kc-hover" id="kc-hover">\
 										<div class="kc-hover-top">\
-											<img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" >\
+											<img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" />\
 											<dl>\
 												<h3 class="ListName">' + JsonObj[i].name + '</h3>\
 												<dt><p><span class="learnerCount">' + JsonObj[i].learnerCount + '</span>在学</p></dt>\
@@ -317,7 +317,7 @@ function contenrHot() {
 				for(var i = hotIndex; i < indexLength; i++) {
 					hotHmtl += '<li>\
 								<a href="' + hotList[i].providerLink + '">\
-									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '">\
+									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '" />\
 									<h3>' + hotList[i].name + '</h3>\
 									<span>' + hotList[i].learnerCount + '</span>\
 								</a>\

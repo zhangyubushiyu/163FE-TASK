@@ -97,7 +97,7 @@ function loginFun() {
 
 			}
 		//密码输入框失去焦点开始验证
-		password.onblur = function() {
+		paword.onblur = function() {
 			if(paword.value.length >= 6) {
 				prompt.innerHTML = '密码合法';
 				prompt.style.color = '#189f36';

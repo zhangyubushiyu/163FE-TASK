@@ -77,7 +77,7 @@ function fadeout(elem, alpha) {
 
 	//设置opacity 
 	function setOpacity(element, value) {
-		element.filters ? element.style.filter = 'alpha(opacity=' + value + ')' : element.style.opacity = value;
+		element.filters ? element.style.filter = 'alpha(opacity=' + value * 100 + ')' : element.style.opacity = value;
 	}
 }
 

@@ -21,7 +21,7 @@
 			<div class="msg-txt bodymax">
 				<p>
 					网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！
-					<a href="#">立即查看&gt;</a>
+					<a href="">立即查看&gt;</a>
 					<span id="msg-off"><i></i>不再提示</span>
 				</p>
 			</div>
@@ -30,7 +30,7 @@
 			//关闭顶部提示信息函数
 			(function msgFun() {
 				var msg = document.getElementById("msg"),
-				msgOff = document.getElementById("msg-off");
+					msgOff = document.getElementById("msg-off");
 				//检测看cookie是否存在
 				function getMsgCookie() {
 					if(getCookie("msg") == "off") {
@@ -43,10 +43,12 @@
 				}
 				getMsgCookie();
 				msgOff.onclick = function() {
+
 					//生成cookie
 					setCookie("msg", "off", setCookieDate(365));
 					//隐藏提示信息
 					msg.style.display = "none";
+
 				}
 			})();
 		</script>
@@ -216,7 +218,7 @@
 							<h2>最热排行</h2>
 						</div>
 						<ul id="hotList">
-							
+
 						</ul>
 					</div>
 					<!--最热课程结束-->
@@ -288,16 +290,24 @@
 					<!--action="http://study.163.com/webDev/login.htm" method="get"-->
 					<form id="form">
 						<div class="user-name">
-							<label for=userName "">账号</label>
-							<input type="text" id="userName" name="userName" value="" />
+							<div class="form-div">
+								<label for=userName "">账号</label>
+								<input type="text" id="userName" name="userName" value="" />
+							</div>
 						</div>
 						<div class="password">
-							<label for="password">密码</label>
-							<input type="password" name="password" id="password" />
+							<div class="form-div">
+								<label for="password">密码</label>
+								<input type="password" name="password" id="password" />
+							</div>
+							<p id="prompt"></p>
 						</div>
+
 						<div class="submit">
-							<input type="submit" id="submit" name="submit" value="登 录" />
+							<div id="submit">登 录</div>
+							<!--<input type="submit" id="submit" name="submit" value="登 录" />-->
 						</div>
+					
 					</form>
 					<div class="off-win" id="login-off"></div>
 				</div>
@@ -307,7 +317,7 @@
 				<div class="video-win" id="video">
 					<h1>请观看下面的视频</h1>
 					<video id="videoPlay" controls="controls" preload="auto">
-						<source src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4"></source>
+						<source src="//mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4"></source>
 						当前浏览器不支持 video直接播放，点击这里下载视频：
 						<a href="myvideo.webm">下载视频</a>
 					</video>
@@ -317,8 +327,10 @@
 			</div>
 		</div>
 		<!--弹窗部分结束-->
-
+		<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/201609.js" type="text/javascript" charset="utf-8"></script>
+
 	</body>
 
 </html>

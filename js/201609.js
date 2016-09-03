@@ -84,83 +84,6 @@ scrollImg.onmouseout = function() {
 
 }
 
-//登录
-var loginWin = document.getElementById("login"),
-	//获取video窗口
-	videoWin = document.getElementById("video"),
-	//获取login关闭按钮
-	loginOff = document.getElementById("login-off"),
-	//获取关注按钮
-	popLogin = document.getElementById("gz"),
-	ygz = document.getElementById("ygz"),
-	fs = document.getElementById("fs"),
-	//获取弹出窗口遮蔽层
-	popBox = document.getElementById("pop-box"),
-	//获取video播放
-	videoPlayBut = document.getElementById("videoPlay"),
-	//获取登录用户名
-	userName = document.getElementById("userName"),
-	//获取登录密码
-	Password = document.getElementById("password"),
-	//获取登录提交按钮
-	loginBut = document.getElementById("submit");
-
-//登录开始
-//登录表单验证函数
-function loginVerify() {
-	loginBut.onclick = function() {
-		var patten = /^[a-zA-Z]\w{3,15}$/ig;
-		if(patten.test(userName.value)) {
-			var form = document.getElementById("form");
-			//验证通过
-			//			alert("验证通过1");
-			ajax({
-				method: "get", //传输方式
-				url: "http://study.163.com/webDev/login.htm", //url地址
-				data: /*form.serialize(),*/ { //传的参数
-					"userName": "studyOnline",
-					"password": "study.163.com"
-				},
-				success: function(text) {
-					//成功后进这里
-					alert(text);
-					setCookie("loginSuc", "login", setCookieDate(10));
-					popLogin.style.display = "none";
-					ygz.style.display = "block";
-					fs.style.display = "block";
-
-				},
-				async: true //同步方式，true异步, false不是异步
-			});
-		} else {
-			//验正不通过
-			alert("用户名或密码不合法！");
-		}
-
-	};
-}
-
-getLoginSuc();
-//登录判断loginSuc是否存在
-function getLoginSuc() {
-	//点击关注按钮
-	popLogin.onclick = function() {
-		if(getCookie("loginSuc")) {
-			//cookie存在调用关注按钮
-		} else {
-			//弹出登录窗口函数调用
-			popOpen(popLogin, loginWin);
-			//调用登录窗口关闭按钮
-			loginOff.onclick = function() {
-				//关闭窗口函数调用
-				popOff(loginOff, loginWin);
-			};
-
-			loginVerify();
-		}
-	};
-}
-
 //视频播放
 var videoOff = document.getElementById("video-off"),
 	//获取弹出video按钮
@@ -192,7 +115,7 @@ function contenrAjax(pageNo, type, psize) {
 		url: "http://study.163.com/webDev/couresByCategory.htm", //url地址
 		data: { //传的参数
 			"pageNo": pageNo, //页数
-			"psize": 20, //条数
+			"psize": psize, //条数
 			"type": type //课程类型	10设计 20编程
 		},
 		success: function(text) {
@@ -254,9 +177,6 @@ function contenrAjax(pageNo, type, psize) {
 
 }
 
-//默认加载课程列表，1为页码 10课程分类
-contenrAjax(1, 10);
-
 //翻页
 var contenrList = document.getElementById('contenr-l-list'),
 	pageDiv = document.getElementById('page'),
@@ -276,7 +196,8 @@ function coursePage(page, type) {
 		var page = pageLi[i].className = '';
 
 		pageLi[i].onclick = function() {
-			var type = 10;
+			var type = 10,
+				psize = 20;
 			now = this.index;
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
@@ -287,7 +208,9 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
-			contenrAjax(now + 1, type);
+			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+
+			contenrAjax(now + 1, type, psize);
 			return pageNow = now;
 		}
 		var pageNow = '';
@@ -307,7 +230,10 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
-			contenrAjax(pageNow + 1, type);
+
+			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+
+			contenrAjax(pageNow + 1, type, psize);
 			return pageNow;
 		}
 
@@ -327,7 +253,9 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
-			contenrAjax(pageNow + 1, type);
+			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+
+			contenrAjax(pageNow + 1, type, psize);
 			return pageNow;
 		}
 
@@ -341,11 +269,13 @@ var design = document.getElementById('tab-1'),
 	programme = document.getElementById('tab-2');
 
 function contenrTab() {
-
+	var psize = 20;
 	design.onclick = function() {
-		//切换课程类型
-		contenrAjax(1, 10);
+		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
+		//切换课程类型
+		contenrAjax(1, 10, psize);
+		console.log(psize);
 		//调整页码相关
 		// 1为初始化页码位置 10设计分类
 		coursePage(1, 10);
@@ -354,8 +284,10 @@ function contenrTab() {
 
 	}
 	programme.onclick = function() {
+		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+
 		//切换课程类型
-		contenrAjax(1, 20);
+		contenrAjax(1, 20, psize);
 		//调整页码相关
 		// 1为初始化页码位置 20编程分类
 		coursePage(1, 20);
@@ -368,30 +300,67 @@ contenrTab();
 
 //热销课程列表
 function contenrHot() {
-	ajax: ajax({
+	hotAjax: ajax({
 		method: "get", //传输方式
 		url: "http://study.163.com/webDev/hotcouresByCategory.htm", //url地址
 		success: function(text) {
 			//成功后进这里
 			var hotList = JSON.parse(text)
 			var hotHmtl = '',
+				//节点
 				hotListHtml = document.getElementById('hotList');
-			for(var i = 0; i < 10; i++) {
-				hotHmtl += '<li>\
+			var indexLength = 10,
+				hotIndex = 0;
+
+			function hotHmtlFun() {
+				//				(indexLength);
+				for(var i = hotIndex; i < indexLength; i++) {
+					hotHmtl += '<li>\
 								<a href="' + hotList[i].providerLink + '">\
 									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '">\
 									<h3>' + hotList[i].name + '</h3>\
 									<span>' + hotList[i].learnerCount + '</span>\
 								</a>\
 							</li>';
-				hotListHtml.innerHTML = hotHmtl;
+					//插入到hmtl
+					hotListHtml.innerHTML = hotHmtl;
+
+				}
+				hotIndex++;
+				indexLength++;
+//				console.log('开始：' + hotIndex);
+//				console.log('结束' + indexLength);
 
 			}
+			hotHmtlFun();
+			//热门课程循环
+			setInterval(function() {
+				if (hotIndex>10) {
+					hotIndex=0;
+					indexLength=10;
+				} 
+				hotHmtl='';
+				hotHmtlFun();
+			}, 5000);
 
 		},
-		async: true //同步方式，true异步, false不是异步
+		async: true, //同步方式，true异步, false不是异步
 	});
 
 }
 
 contenrHot();
+
+
+//检测大小屏幕
+if(document.body.offsetWidth < 1205) {
+	//课程加载每页15条
+	contenrAjax(1, 10, 15);
+} else {
+	//默认加载课程列表，1为页码 10课程分类
+	//课程加载每页20条
+	contenrAjax(1, 10, 20);
+}
+
+//console.log(screen.availWidth);
+//console.log(document.body.offsetWidth);

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="css/hover.css" />
 		<link rel="stylesheet" type="text/css" href="css/pop.css" />
+		<link rel="stylesheet" type="text/css" href="css/min-1025.css"/>
 		<script src="js/startMove.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
@@ -206,10 +207,12 @@
 						<div class="content-r-title">
 							<h2>机构介绍</h2>
 						</div>
-						<div class="video-box">
+						<div class="video-box" >
 							<p>观看下面的视频来了解吧：</p>
-							<img src="img/video-img.jpg" alt="网易云课堂" / >
-							<i id="video-Play"></i>
+							<div id="video-Play">
+								<img src="img/video-img.jpg" alt="网易云课堂介绍视频" >
+								<i></i>
+							</div>
 						</div>
 					</div>
 					<!--最热排行开始-->
@@ -287,25 +290,23 @@
 				<!--登录弹窗开始-->
 				<div class="login-win" id="login">
 					<h1>登录网易云课堂</h1>
-					<!--action="http://study.163.com/webDev/login.htm" method="get"-->
 					<form id="form">
 						<div class="user-name">
 							<div class="form-div">
 								<label for="userName">账号</label>
-								<input type="text" id="userName" name="userName" value="" />
+								<input type="text" id="userName" name="userName" value=""  placeholder="请输入用户名" />
 							</div>
 						</div>
 						<div class="password">
 							<div class="form-div">
 								<label for="password">密码</label>
-								<input type="password" name="password" id="password" />
+								<input type="password" name="password" id="password" placeholder="请输入密码"/>
 							</div>
 							<p id="prompt"></p>
 						</div>
 
 						<div class="submit">
 							<div id="submit">登 录</div>
-							<!--<input type="submit" id="submit" name="submit" value="登 录" />-->
 						</div>
 					
 					</form>

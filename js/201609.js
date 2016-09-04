@@ -124,14 +124,14 @@ function contenrAjax(pageNo, type, psize) {
 			//储存课程下标
 			var jsonArr = [],
 				contenrHtml = '';
+				
 			for(var i = 0; i < JsonObj.length; i++) {
 				jsonArr = [i];
 				//遍历下标
 				for(var j = 0; j < jsonArr.length; j++) {
-
 					//免费价格处理
-					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' : JsonObj[i].price.toFixed(2);
-
+					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' :JsonObj[i].price=JsonObj[i].price.toFixed(2);
+					
 					contenrHtml += '<li class="kc-list">\
 								<a href="' + JsonObj[i].providerLink + '">\
 									<div class="kc">\
@@ -143,7 +143,7 @@ function contenrAjax(pageNo, type, psize) {
 											<span class="span-2">￥<i class="Listprice">' + JsonObj[i].price + '</i></span>\
 										</div>\
 									</div>\
-									<div class="kc-hover" id="kc-hover">\
+									<div class="kc-hover" >\
 										<div class="kc-hover-top">\
 											<img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" />\
 											<dl>\
@@ -166,6 +166,30 @@ function contenrAjax(pageNo, type, psize) {
 								</a>\
 							</li>';
 					contenrList.innerHTML = contenrHtml;
+				}
+
+			}
+			//课程鼠标悬停弹出课程详情
+			var contenrLi = contenrList.getElementsByClassName('kc-list'),
+				contenrHover = contenrList.getElementsByClassName('kc-hover');
+			var hoverindex = 0;
+			for(var i = 0; i < contenrLi.length; i++) {
+				contenrLi[i].index = i;
+				//鼠标移入
+				contenrLi[i].onmouseenter = function() {
+					hoverindex = this.index;
+					for(var i = 0; i < contenrLi.length; i++) {
+						contenrHover[i].style.display = 'none';
+					}
+					//课程弹出延时
+					setTimeout(function(){
+						contenrHover[hoverindex].style.display = 'block';
+					},500);
+					
+				}
+				//鼠标移开
+				contenrLi[i].onmouseleave=function(){
+					contenrHover[hoverindex].style.display = 'none';
 				}
 
 			}
@@ -275,7 +299,6 @@ function contenrTab() {
 
 		//切换课程类型
 		contenrAjax(1, 10, psize);
-		console.log(psize);
 		//调整页码相关
 		// 1为初始化页码位置 10设计分类
 		coursePage(1, 10);
@@ -328,18 +351,18 @@ function contenrHot() {
 				}
 				hotIndex++;
 				indexLength++;
-//				console.log('开始：' + hotIndex);
-//				console.log('结束' + indexLength);
+				//				console.log('开始：' + hotIndex);
+				//				console.log('结束' + indexLength);
 
 			}
 			hotHmtlFun();
 			//热门课程循环
 			setInterval(function() {
-				if (hotIndex>10) {
-					hotIndex=0;
-					indexLength=10;
-				} 
-				hotHmtl='';
+				if(hotIndex > 10) {
+					hotIndex = 0;
+					indexLength = 10;
+				}
+				hotHmtl = '';
 				hotHmtlFun();
 			}, 5000);
 
@@ -350,7 +373,6 @@ function contenrHot() {
 }
 
 contenrHot();
-
 
 //检测大小屏幕
 if(document.body.offsetWidth < 1205) {

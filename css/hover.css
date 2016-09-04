@@ -19,9 +19,7 @@
 .contenr-l-list  h3:hover{
 	color: #39a030;
 }
-.contenr-l-list li:hover .kc-hover{
-	display: block;
-}
+
 .page li:hover{
 	color: #fff;
 	background-color: #9dd8b1;
@@ -52,7 +50,6 @@
 	padding: 10px 20px 20px 10px;
 }
 .kc-hover-top img{
-	/*float: left;*/
 	width: 218px;
 	 height: 123px;
 	margin-right: 20px;

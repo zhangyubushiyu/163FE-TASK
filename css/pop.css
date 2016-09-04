@@ -57,7 +57,7 @@
 }
 
 .login-win input {
-	line-height: 39px;
+	line-height: 38px;
 	height: 39px;
 	width: 241px;
 	border: none;
@@ -66,6 +66,7 @@
 	text-indent: 4px;
 	outline: 0;
 	background-color: #fafafa;
+	vertical-align: middle;
 }
 
 .login-win .submit {
@@ -84,6 +85,7 @@
 	background-position: -3px -180px;
 	text-align: center;
     line-height: 48px;
+    cursor: default;
 }
 .login-win .password{
 	margin-bottom: 25px;

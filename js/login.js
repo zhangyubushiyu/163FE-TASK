@@ -60,20 +60,20 @@ function loginFun() {
 
 	function clickVerify() {
 		if(userName.value.length > 3 && userName.value.length < 12) {
-			prompt.innerHTML = '用户名合法';
+			prompt.innerHTML = '用户名符合';
 			prompt.style.color = '#189f36';
 			userVerify = true;
 		} else {
-			prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
+			prompt.innerHTML = '用户名不符合！请输入3-12位用户名！';
 			prompt.style.color = '';
 			userVerify = false;
 		}
 		if(paword.value.length >= 6) {
-			prompt.innerHTML = '密码合法';
+			prompt.innerHTML = '密码符合';
 			prompt.style.color = '#189f36';
 			pawordVerify = true;
 		} else {
-			prompt.innerHTML = '密码合法！请输入6位以上密码！';
+			prompt.innerHTML = '密码不符合！请输入6位以上密码！';
 			prompt.style.color = '';
 			pawordVerify = false;
 
@@ -85,9 +85,10 @@ function loginFun() {
 		//用户名输入框失去焦点开始验证
 		userName.onblur = function() {
 				if(userName.value.length > 3 && userName.value.length < 12) {
-					prompt.innerHTML = '用户名合法';
+					prompt.innerHTML = '用户名符合';
 					prompt.style.color = '#189f36';
 					userVerify = true;
+					loginBut.disabled=false;
 				} else {
 					prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
 					prompt.style.color = '';
@@ -98,15 +99,20 @@ function loginFun() {
 			}
 		//密码输入框失去焦点开始验证
 		paword.onblur = function() {
-			if(paword.value.length >= 6) {
-				prompt.innerHTML = '密码合法';
+			if(paword.value.length >= 6 && userName.value.length > 3 && userName.value.length < 12) {
+				prompt.innerHTML = '用户名和密码符合';
 				prompt.style.color = '#189f36';
 				pawordVerify = true;
-			} else {
-				prompt.innerHTML = '密码合法！请输入6位以上密码！';
+				loginBut.disabled=false;
+			} else if(userName.value.length > 3 && userName.value.length < 12) {
+				prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
+				prompt.style.color = '';
+				userVerify = false;
+
+			}else{
+				prompt.innerHTML = '密码不符合！请输入6位以上密码！';
 				prompt.style.color = '';
 				pawordVerify = false;
-
 			}
 		}
 
@@ -115,11 +121,11 @@ function loginFun() {
 	//判读表单验证结果
 
 	loginBut.onclick = function() {
-//		console.log(userVerify);
-//		console.log(pawordVerify);
 		//执行验证
 		clickVerify();
 		if(userVerify && pawordVerify) {
+			
+			loginBut.disabled=false;
 			ajax({
 				method: "get", //传输方式
 				url: "http://study.163.com/webDev/login.htm", //url地址
@@ -129,11 +135,12 @@ function loginFun() {
 					password: md5(paword.value),
 				},
 				success: function(text) {
-					//				alert(text);
 					if(text == 0) {
 						//登录不成功
+						popBox.style.display='block';
+						loginWin.style.display='block';
 						prompt.style.display = 'block';
-						prompt.innerHTML = '用户名或密码有误，请从新输入！';
+						prompt.innerHTML = '登录失败！用户名或密码错误请重新登录。';
 					} else {
 						//登录成功
 						//写入登录成功cookie
@@ -141,7 +148,7 @@ function loginFun() {
 						//隐藏关注按钮
 						popLogin.style.display = "none";
 
-						//关注
+						//发起关注请求
 						ajax({
 							method: 'get',
 							async: true,
@@ -162,17 +169,23 @@ function loginFun() {
 				},
 
 			});
-		} else {
-			//表单验证不通过
+		} else if(userName.value ==''){
+			//表单验证为空提示信息
+			prompt.style.display = 'block';
+			prompt.innerHTML = '用户名或密码不能为空！';
 
+			//阻止表单提交
+			loginBut.disabled=true;
+
+		}else{
 			//提示错误
 			prompt.style.display = 'block';
 			prompt.innerHTML = '用户名或密码有误，请从新输入！';
-
+			
 			//阻止表单提交
-			loginForm.preventDefault;
-
+			loginBut.disabled=true;
 		}
 	};
 
 }
+

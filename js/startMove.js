@@ -1,5 +1,5 @@
 //批量获取class
-function getByclass(oParent, sClass) {
+function getByClass(oParent, sClass) {
 	var aEle = oParent.getElementsByClassName('*'),
 		aResult = [];
 	for(var i = 0; i < aResult.length; i++) {
@@ -139,6 +139,8 @@ function getCookie(name) {
 	}
 	return cookieValue;
 }
+
+
 //创建方法
 //setCookie("user","章鱼哥",setCookieDate(7));
 //读取方法
@@ -222,7 +224,7 @@ function ajax(obj) {
 		if(xhr.status == 200) {
 			obj.success(xhr.responseText); //回调传递参数
 		} else {
-			alert("获取数据错误！错误代码：" + xhr.status + "，状态信息：" + xhr.statusText);
+			console.log("获取数据错误！错误代码：" + xhr.status + "，状态信息：" + xhr.statusText);
 		}
 	}
 }

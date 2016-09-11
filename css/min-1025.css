@@ -44,16 +44,15 @@
 	}
 	.scroll-img {
 		max-width: 1204px;
-		/*overflow: hidden;*/
-	}
-	body .scroll-img ul {
-		position: relative;
-		left: -215px;
 	}
 	.scroll-img li img {
 		width: 234px;
 	}
+	#clearfix{
+		width: 2370px;
+	}
 	.page {
 		margin-right: 35px;
 	}
+	
 }

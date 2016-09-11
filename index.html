@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		
+
 		<div class="msg" id="msg">
 			<!--顶部提示-->
 			<div class="msg-txt bodymax">
@@ -284,43 +284,41 @@
 
 		<!--弹窗部分开始-->
 		<div class="pop-box" id="pop-box">
-			<div class="popup-div">
-				<!--登录弹窗开始-->
-				<div class="login-win" id="login">
-					<h1>登录网易云课堂</h1>
-					<form id="form">
-						<div class="user-name">
-							<div class="form-div">
-								<label for="userName">账号</label>
-								<input type="text" id="userName" name="userName" value="" placeholder="请输入用户名" />
-							</div>
+			<!--登录弹窗开始-->
+			<div class="login-win" id="login">
+				<h1>登录网易云课堂</h1>
+				<form id="form">
+					<div class="user-name">
+						<div class="form-div">
+							<label for="userName">账号</label>
+							<input type="text" id="userName" name="userName" value="" placeholder="请输入用户名" />
 						</div>
-						<div class="password">
-							<div class="form-div">
-								<label for="password">密码</label>
-								<input type="password" name="password" id="password" placeholder="请输入密码" />
-							</div>
-							<p id="prompt"></p>
+					</div>
+					<div class="password">
+						<div class="form-div">
+							<label for="password">密码</label>
+							<input type="password" name="password" id="password" placeholder="请输入密码" />
 						</div>
+						<p id="prompt"></p>
+					</div>
 
-						<div class="submit">
-							<div id="submit">登 录</div>
-						</div>
+					<div class="submit">
+						<div id="submit">登 录</div>
+					</div>
 
-					</form>
-					<div class="off-win" id="login-off"></div>
-				</div>
-				<!--登录弹窗结束-->
-				<!--视频弹窗开始-->
-				<div class="video-win" id="video">
-					<h1>请观看下面的视频</h1>
-					<video id="videoPlay" controls="controls" preload="auto">
-						<source src="//mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4" />
-					</video>
-					<div class="off-win" id="video-off"></div>
-				</div>
-				<!--视频弹窗结束-->
+				</form>
+				<div class="off-win" id="login-off"></div>
 			</div>
+			<!--登录弹窗结束-->
+			<!--视频弹窗开始-->
+			<div class="video-win" id="video">
+				<h1>请观看下面的视频</h1>
+				<video id="videoPlay" controls="controls" preload="auto">
+					<source src="//mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4" />
+				</video>
+				<div class="off-win" id="video-off"></div>
+			</div>
+			<!--视频弹窗结束-->
 		</div>
 		<!--弹窗部分结束-->
 		<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>

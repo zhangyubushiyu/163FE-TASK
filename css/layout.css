@@ -336,7 +336,6 @@ body{
 .scroll-img {
 	position:relative ;
 	overflow: hidden;
-	/*width: 1616px;*/
 	margin: 0 auto;
 	
 }
@@ -345,7 +344,6 @@ body{
 	margin: 0 auto;
 	position: relative;
 	width: 3270px;
-	left: 0;
 }
 
 .scroll-img li {

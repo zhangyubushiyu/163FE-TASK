@@ -59,17 +59,17 @@ banner.onmouseout = function() {
 }
 
 //向左循环滚动图片
-
-var scrollImg = document.getElementById('clearfix');
-var speed = -2;
+var scrollImg = document.getElementById('clearfix'),
+	speed = -2;
 scrollImg.innerHTML += scrollImg.innerHTML;
-
 function scroll() {
 	//复位					
 	if(scrollImg.offsetLeft < -scrollImg.offsetWidth / 2) {
 		scrollImg.style.left = '0';
+		
 	}
 	//设置滚动
+
 	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
 }
 //计时器

@@ -43,8 +43,8 @@
 		width: 1364px;
 	}
 	.scroll-img {
-		max-width: 1364px;
-		overflow: hidden;
+		max-width: 1204px;
+		/*overflow: hidden;*/
 	}
 	body .scroll-img ul {
 		position: relative;

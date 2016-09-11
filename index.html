@@ -12,17 +12,18 @@
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="css/hover.css" />
 		<link rel="stylesheet" type="text/css" href="css/pop.css" />
-		<link rel="stylesheet" type="text/css" href="css/min-1025.css"/>
-		<script src="js/startMove.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/min-1025.css" />
+		<script src="js/tool.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
-		<!--顶部提示-->
+		
 		<div class="msg" id="msg">
+			<!--顶部提示-->
 			<div class="msg-txt bodymax">
 				<p>
 					网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！
-					<a href="">立即查看&gt;</a>
+					<a href="http://study.163.com/smartSpec/intro.htm#/smartSpecIntro">立即查看&gt;</a>
 					<span id="msg-off"><i></i>不再提示</span>
 				</p>
 			</div>
@@ -35,8 +36,8 @@
 				//检测看cookie是否存在
 				function getMsgCookie() {
 					if(getCookie("msg") == "off") {
-						//存在隐藏提示信息
-						msg.style.display = "none";
+						//删除节点
+						document.body.removeChild(msg);
 					} else {
 						//不存在显示提示信息
 						msg.style.display = "block";
@@ -44,12 +45,10 @@
 				}
 				getMsgCookie();
 				msgOff.onclick = function() {
-
 					//生成cookie
 					setCookie("msg", "off", setCookieDate(365));
-					//隐藏提示信息
-					msg.style.display = "none";
-
+					//删除节点
+					document.body.removeChild(msg);
 				}
 			})();
 		</script>
@@ -95,7 +94,7 @@
 			<div class="banner-box">
 				<ul id="banner-list" class="clearfix">
 					<li class="active-img">
-						<a href="http://open.163.com/" target="_blank"><img src="img/banner1.jpg"  alt="网易公开课" /></a>
+						<a href="http://open.163.com/" target="_blank"><img src="img/banner1.jpg" alt="网易公开课" /></a>
 					</li>
 					<li>
 						<a href="http://study.163.com/" target="_blank"><img src="img/banner2.jpg" alt="网易云课堂" /></a>
@@ -184,18 +183,17 @@
 					</div>
 					<!--课程翻页-->
 					<div class="page" id="page">
-						<div class="page-up" id="page-up">&lt;</div>
+
 						<ul>
+							<div class="page-up" id="page-up">&lt;</div>
 							<li>1</li>
 							<li>2</li>
 							<li>3</li>
 							<li>4</li>
 							<li>5</li>
-							<li>6</li>
-							<li>7</li>
-							<li>8</li>
+							<div class="page-down" id="page-down">&gt;</div>
 						</ul>
-						<div class="page-down" id="page-down">&gt;</div>
+
 					</div>
 				</div>
 				<!--左边课程结束-->
@@ -207,10 +205,10 @@
 						<div class="content-r-title">
 							<h2>机构介绍</h2>
 						</div>
-						<div class="video-box" >
+						<div class="video-box">
 							<p>观看下面的视频来了解吧：</p>
 							<div id="video-Play">
-								<img src="img/video-img.jpg" alt="网易云课堂介绍视频" >
+								<img src="img/video-img.jpg" alt="网易云课堂介绍视频">
 								<i></i>
 							</div>
 						</div>
@@ -294,13 +292,13 @@
 						<div class="user-name">
 							<div class="form-div">
 								<label for="userName">账号</label>
-								<input type="text" id="userName" name="userName" value=""  placeholder="请输入用户名" />
+								<input type="text" id="userName" name="userName" value="" placeholder="请输入用户名" />
 							</div>
 						</div>
 						<div class="password">
 							<div class="form-div">
 								<label for="password">密码</label>
-								<input type="password" name="password" id="password" placeholder="请输入密码"/>
+								<input type="password" name="password" id="password" placeholder="请输入密码" />
 							</div>
 							<p id="prompt"></p>
 						</div>
@@ -308,7 +306,7 @@
 						<div class="submit">
 							<div id="submit">登 录</div>
 						</div>
-					
+
 					</form>
 					<div class="off-win" id="login-off"></div>
 				</div>
@@ -327,7 +325,7 @@
 		<!--弹窗部分结束-->
 		<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/201609.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
 
 	</body>
 

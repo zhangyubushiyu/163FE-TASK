@@ -81,7 +81,6 @@ scrollImg.onmouseover = function() {
 }
 scrollImg.onmouseout = function() {
 	timeScroll = setInterval(scroll, 30)
-
 }
 
 //视频播放
@@ -124,21 +123,21 @@ function contenrAjax(pageNo, type, psize) {
 			//储存课程下标
 			var jsonArr = [],
 				contenrHtml = '';
-				
+
 			for(var i = 0; i < JsonObj.length; i++) {
 				jsonArr = [i];
 				//遍历下标
 				for(var j = 0; j < jsonArr.length; j++) {
 					//免费价格处理
-					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' :JsonObj[i].price=JsonObj[i].price.toFixed(2);
-					
+					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' : JsonObj[i].price = JsonObj[i].price.toFixed(2);
+
 					contenrHtml += '<li class="kc-list">\
 								<a href="' + JsonObj[i].providerLink + '">\
 									<div class="kc">\
 										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" /></div>\
 										<div class="l-txt">\
 											<h3 class="">' + JsonObj[i].name + '</h3>\
-											<h4 class="">' + JsonObj[i].categoryName + '</h4>\
+											<h4 class="">' + JsonObj[i].provider + '</h4>\
 											<span class="span-1"><i class="learnerCount">' + JsonObj[i].learnerCount + '</i></span>\
 											<span class="span-2">￥<i class="Listprice">' + JsonObj[i].price + '</i></span>\
 										</div>\
@@ -153,7 +152,7 @@ function contenrAjax(pageNo, type, psize) {
 													<p>发布者：<span class="provider">' + JsonObj[i].provider + '</span></p>\
 												</dd>\
 												<dd>\
-													<p>分类：<span class="">' + JsonObj[i].categoryName + '</span></p>\
+													<p>分类：<span class="">' + JsonObj[i].provider + '</span></p>\
 												</dd>\
 											</dl>\
 										</div>\
@@ -170,25 +169,25 @@ function contenrAjax(pageNo, type, psize) {
 
 			}
 			//课程鼠标悬停弹出课程详情
-			var contenrLi = contenrList.getElementsByClassName('kc-list'),
-				contenrHover = contenrList.getElementsByClassName('kc-hover');
+			var contenrLi = getElementsByClassName(contenrList, 'kc-list'),
+				contenrHover = getElementsByClassName(contenrList, 'kc-hover');
 			var hoverindex = 0;
 			for(var i = 0; i < contenrLi.length; i++) {
 				contenrLi[i].index = i;
 				//鼠标移入
 				contenrLi[i].onmouseenter = function() {
-					hoverindex = this.index;
-					for(var i = 0; i < contenrLi.length; i++) {
-						contenrHover[i].style.display = 'none';
+						hoverindex = this.index;
+						for(var i = 0; i < contenrLi.length; i++) {
+							contenrHover[i].style.display = 'none';
+						}
+						//课程弹出延时
+						setTimeout(function() {
+							contenrHover[hoverindex].style.display = 'block';
+						}, 500);
+
 					}
-					//课程弹出延时
-					setTimeout(function(){
-						contenrHover[hoverindex].style.display = 'block';
-					},500);
-					
-				}
-				//鼠标移开
-				contenrLi[i].onmouseleave=function(){
+					//鼠标移开
+				contenrLi[i].onmouseleave = function() {
 					contenrHover[hoverindex].style.display = 'none';
 				}
 
@@ -218,7 +217,6 @@ function coursePage(page, type) {
 
 		//切换课程分类页码重置
 		var page = pageLi[i].className = '';
-
 		pageLi[i].onclick = function() {
 			var type = 10,
 				psize = 20;
@@ -336,7 +334,6 @@ function contenrHot() {
 				hotIndex = 0;
 
 			function hotHmtlFun() {
-				//				(indexLength);
 				for(var i = hotIndex; i < indexLength; i++) {
 					hotHmtl += '<li>\
 								<a href="' + hotList[i].providerLink + '">\
@@ -351,8 +348,6 @@ function contenrHot() {
 				}
 				hotIndex++;
 				indexLength++;
-				//				console.log('开始：' + hotIndex);
-				//				console.log('结束' + indexLength);
 
 			}
 			hotHmtlFun();
@@ -375,6 +370,7 @@ function contenrHot() {
 contenrHot();
 
 //检测大小屏幕
+
 if(document.body.offsetWidth < 1205) {
 	//课程加载每页15条
 	contenrAjax(1, 10, 15);
@@ -384,5 +380,19 @@ if(document.body.offsetWidth < 1205) {
 	contenrAjax(1, 10, 20);
 }
 
-//console.log(screen.availWidth);
-//console.log(document.body.offsetWidth);
+var bodyW = 0;
+window.onresize = function() {
+	bodyW = document.body.offsetWidth;
+	if(bodyW < 1205) {
+		if(getElementsByClassName(contenrList, 'kc-list').length != 15) {
+			console.log('小屏幕');
+			contenrAjax(1, 10, 15);
+
+		}
+
+	} else if(getElementsByClassName(contenrList, 'kc-list').length <= 15) {
+		console.log('大屏幕');
+		contenrAjax(1, 10, 20);
+
+	}
+}

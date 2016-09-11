@@ -1,8 +1,11 @@
+/*body{width: 100%;}*/
 .bodymax {
 	width: 1206px;
 	margin: 0 auto;
 }
-
+body{
+	min-width: 1205px;
+}
 
 /*提示内容*/
 
@@ -199,15 +202,19 @@
 .banner {
 	position: relative;
 	overflow: hidden;
+	text-align: center;
 }
 
 .banner-box {
+	display: inline-block;
 	width: 1616px;
 	overflow: hidden;
 	/*margin:  0 auto;*/
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
+	/*position: relative;*/
+	/*left: 50%;*/
+	/*transform: translateX(-50%);*/
+	
+	
 }
 
 .banner ul {
@@ -327,25 +334,25 @@
 /*图片滚动*/
 
 .scroll-img {
+	position:relative ;
 	overflow: hidden;
-	// width: 1616px;
-	height: 228px;
+	/*width: 1616px;*/
 	margin: 0 auto;
+	
 }
 
 .scroll-img ul {
 	margin: 0 auto;
-	position: absolute;
+	position: relative;
 	width: 3270px;
 	left: 0;
 }
 
 .scroll-img li {
-	float: left;
+	display: inline-block;
 	overflow: hidden;
+	font-size: 0;
 	box-sizing: border-box;
-	border-left: 5px solid #fff;
-	height: 228px;
 }
 
 .scroll-img li img {
@@ -359,6 +366,7 @@
 .main {
 	background-color: #F8F8F8;
 	padding-bottom: 120px;
+	margin-top: -5px;
 }
 
 .mainbody {
@@ -490,7 +498,6 @@
 
 .page {
 	float: right;
-	width: 282px;
 	height: 20px;
 	line-height: 20px;
 	margin: 0 32px 0 0;

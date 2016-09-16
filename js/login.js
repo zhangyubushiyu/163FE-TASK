@@ -84,13 +84,13 @@ function loginFun() {
 	function blurVerify() {
 		//用户名输入框失去焦点开始验证
 		userName.onblur = function() {
-				if(userName.value.length > 3 && userName.value.length < 12) {
+				if(userName.value.length > 5 && userName.value.length < 12) {
 					prompt.innerHTML = '用户名符合';
 					prompt.style.color = '#189f36';
 					userVerify = true;
 					loginBut.disabled=false;
 				} else {
-					prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
+					prompt.innerHTML = '用户名不合法！请输入5-12位用户名！';
 					prompt.style.color = '';
 					userVerify = false;
 
@@ -99,12 +99,12 @@ function loginFun() {
 			}
 		//密码输入框失去焦点开始验证
 		paword.onblur = function() {
-			if(paword.value.length >= 6 && userName.value.length > 3 && userName.value.length < 12) {
+			if(paword.value.length >= 6 && userName.value.length > 5 && userName.value.length < 12) {
 				prompt.innerHTML = '用户名和密码符合';
 				prompt.style.color = '#189f36';
 				pawordVerify = true;
 				loginBut.disabled=false;
-			} else if(userName.value.length > 3 && userName.value.length < 12) {
+			} else if(userName.value.length > 5 && userName.value.length < 12) {
 				prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
 				prompt.style.color = '';
 				userVerify = false;
@@ -140,21 +140,23 @@ function loginFun() {
 						popBox.style.display='block';
 						loginWin.style.display='block';
 						prompt.style.display = 'block';
+						prompt.style.color = 'red';
 						prompt.innerHTML = '登录失败！用户名或密码错误请重新登录。';
 					} else {
 						//登录成功
+						
 						//写入登录成功cookie
 						setCookie("loginSuc", "login", setCookieDate(10));
+						//关闭登录窗口
+						popOff(loginOff, loginWin);
 						//隐藏关注按钮
 						popLogin.style.display = "none";
-
 						//发起关注请求
 						ajax({
 							method: 'get',
 							async: true,
 							url: 'http://study.163.com/webDev/attention.htm',
 							success: function(text) {
-//								alert(text)
 								//写入关注成功cookie
 								setCookie("followSuc", "followSuc", setCookieDate(10));
 								//显示已关注
@@ -163,8 +165,7 @@ function loginFun() {
 						});
 						//显示目前粉丝数量
 						fs.style.display = "block";
-						//关闭登录窗口
-						popOff(loginOff, loginWin);
+						
 					}
 				},
 

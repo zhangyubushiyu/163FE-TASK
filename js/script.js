@@ -1,3 +1,4 @@
+
 //banner轮播
 var bannerImg = document.getElementById('banner-list'),
 	bannerImgLi = bannerImg.getElementsByTagName('li'),
@@ -10,7 +11,7 @@ for(var i = 0; i < bannerBarLi.length; i++) {
 	//定义一个下标
 	bannerBarLi[i].index = i;
 	//个BarLI添加鼠标移入事件
-	bannerBarLi[i].onmouseover = function() {
+	bannerBarLi[i].onclick = function() {
 		now = this.index;
 		//调用bannerImgLi
 		bannerTab();
@@ -62,11 +63,12 @@ banner.onmouseout = function() {
 var scrollImg = document.getElementById('clearfix'),
 	speed = -2;
 scrollImg.innerHTML += scrollImg.innerHTML;
+
 function scroll() {
 	//复位					
 	if(scrollImg.offsetLeft < -scrollImg.offsetWidth / 2) {
 		scrollImg.style.left = '0';
-		
+
 	}
 	//设置滚动
 
@@ -371,27 +373,40 @@ contenrHot();
 
 //检测大小屏幕
 
-if(document.body.offsetWidth < 1205) {
+var minCss = document.getElementById('minW');
+if(document.body.offsetWidth <= 1205) {
+
+	minCss.href = 'css/min-1025.css';
 	//课程加载每页15条
 	contenrAjax(1, 10, 15);
+
 } else {
 	//默认加载课程列表，1为页码 10课程分类
 	//课程加载每页20条
 	contenrAjax(1, 10, 20);
 }
 
-var bodyW = 0;
+var timerBody;
+timerBody = setInterval(function() {
+	if(document.body.offsetWidth <= 1205) {
+		minCss.href = 'css/min-1025.css';
+
+	} else {
+		minCss.href = '';
+	}
+}, 500);
+
 window.onresize = function() {
-	bodyW = document.body.offsetWidth;
-	if(bodyW < 1205) {
-		if(getElementsByClassName(contenrList, 'kc-list').length != 15) {
-			console.log('小屏幕');
-			contenrAjax(1, 10, 15);
+	if(document.body.offsetWidth <= 1205) {
+		//			console.log('小屏');
+		minCss.href = 'css/min-1025.css';
+		contenrAjax(1, 10, 15);
 
-		}
+		//		}
 
-	} else if(getElementsByClassName(contenrList, 'kc-list').length <= 15) {
-		console.log('大屏幕');
+	} else {
+		//			console.log('大屏幕');
+		minCss.href = '';
 		contenrAjax(1, 10, 20);
 
 	}

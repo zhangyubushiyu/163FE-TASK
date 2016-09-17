@@ -241,10 +241,35 @@ function course(pageNo, type) {
 		});
 		//插入DOM
 		$('#contenr-l-list').html(courseHtml);
+		//课程弹窗
+		courseHoverFun();
 
 	}
 }
 course();
+//课程弹窗函数
+function courseHoverFun() {
+	var coursePop = $('.kc-list'),
+		coursehover = $('.kc-hover'),
+		now = 0;
+
+	$.each(coursePop, function(i) {
+		coursePop[i].index = i;
+		coursePop.eq(i).hover(function() {
+			now = this.index;
+			//鼠标移入 延时0.5秒弹出
+			setTimeout(function() {
+				coursehover.eq(now).css('display', 'block')
+			}, 500);
+
+		}, function() {
+			//鼠标移出
+			coursehover.eq(now).css('display', 'none')
+		});
+
+	})
+
+};
 
 //热门课程
 function courseHot() {
@@ -279,14 +304,23 @@ function courseHot() {
 		$('#hotList').html(courseHotHtml += courseHotHtml);
 		//热门课程循环
 		var hotList = $('#hotList'),
-			hotListTop = 56;
-		setInterval(function() {
+			hotListTop = 56,
+			timer;
+
+		function timerFun() {
 			if(hotList.css('top') == '-1410px') {
 				hotListTop = -8;
 			}
 			hotListTop--;
-			hotList.css('top', hotListTop + 'px')
-		}, 70);
+			hotList.css('top', hotListTop + 'px');
+		}
+		timer = setInterval(timerFun, 70)
+		
+		hotList.hover(function() {
+			clearInterval(timer);
+		}, function() {
+			timer = setInterval(timerFun,70);
+		})
 	}
 }
 courseHot();
@@ -372,7 +406,7 @@ var popBox = $('#pop-box');
 						if(text == 1) {
 							//成功
 							$('#prompt').html('登录成功！');
-							$('#prompt').css('color','#1aa439');
+							$('#prompt').css('color', '#1aa439');
 							//延时2秒关闭登录窗口
 							setTimeout(function() {
 								popBox.css('display', 'none');
@@ -426,3 +460,5 @@ var popBox = $('#pop-box');
 	})
 
 })();
+
+$('#clearfix').css('width','1624px');

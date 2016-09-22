@@ -33,7 +33,7 @@ function bannerTab() {
 		//把其他li的opacity设置0
 		bannerImgLi[j].style.opacity = '0';
 	}
-	bannerImgLi[now].className = 'active-img';
+//	bannerImgLi[now].className = 'active-img';
 	//淡入调用
 	fadeout(bannerImgLi[now], 1);
 }
@@ -146,7 +146,9 @@ function contenrAjax(pageNo, type, psize) {
 									</div>\
 									<div class="kc-hover" >\
 										<div class="kc-hover-top">\
+											<div class="kc-hover-img">\
 											<img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" />\
+											</div>\
 											<dl>\
 												<h3 class="ListName">' + JsonObj[i].name + '</h3>\
 												<dt><p><span class="learnerCount">' + JsonObj[i].learnerCount + '</span>在学</p></dt>\
@@ -167,13 +169,16 @@ function contenrAjax(pageNo, type, psize) {
 								</a>\
 							</li>';
 					contenrList.innerHTML = contenrHtml;
+					contenrPop();
 				}
 
 			}
-			//课程鼠标悬停弹出课程详情
+			function contenrPop(){
+				//课程鼠标悬停弹出课程详情
 			var contenrLi = getElementsByClassName(contenrList, 'kc-list'),
-				contenrHover = getElementsByClassName(contenrList, 'kc-hover');
-			var hoverindex = 0;
+				contenrHover = getElementsByClassName(contenrList, 'kc-hover'),
+				 hoverindex = 0;
+				
 			for(var i = 0; i < contenrLi.length; i++) {
 				contenrLi[i].index = i;
 				//鼠标移入
@@ -194,6 +199,8 @@ function contenrAjax(pageNo, type, psize) {
 				}
 
 			}
+			}
+			
 
 		},
 
@@ -405,7 +412,6 @@ window.onresize = function() {
 		//		}
 
 	} else {
-		//			console.log('大屏幕');
 		minCss.href = '';
 		contenrAjax(1, 10, 20);
 

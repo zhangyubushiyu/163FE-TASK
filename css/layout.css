@@ -24,7 +24,6 @@ float: left;display: block;}
 .fs{color: #666;float: left;width: 53px;line-height: 22px;text-align: center;}
 .gz{color: #fff;background-color: #21a557;border-radius: 2px;margin-right: 10px;cursor: pointer;}
 .gz i{padding-right: 5px;}
-.fs{/*display: none;*/}
 .fs span{margin-left: 5px;}
 .ygz{width: 106px;line-height: 21px;float: left;background-color: #f8f8f8;color: #333;text-indent: 10px;
 border-radius: 2px;box-sizing: border-box;border: 1px solid #efefef;margin-right: 10px;display: none;}
@@ -42,9 +41,9 @@ background-repeat: no-repeat;background-position: -151px 0;margin: 34px 0 0 30px
 .search a{width: 22px;height: 24px;}
 /*banner*/
 .banner{position: relative;overflow: hidden;text-align: center;}
-.banner-box{display: inline-block;width: 1616px;overflow: hidden;}
+.banner-box{display: inline-block;width: 100%;overflow: hidden;}
 .banner ul{position: relative;height: 450px;}
-.banner .banner-box li{position: absolute;left: 0;top: 0;width: 1616px;}
+.banner .banner-box li{position: absolute;left: 0;top: 0;width: 100%;}
 .banner li a{display: block;margin: 0 auto;height: 450px;}
 .banner img{width: 100%;border: none;}
 .banner-bar{width: 46px;height: 20px;position: absolute;left: 50%;bottom: 10px;transform: translateX(-50%);
@@ -52,6 +51,9 @@ z-index: 4;}
 .banner-bar i{width: 8px;height: 8px;border-radius: 50%;background-color: #fff;margin: 0 2px;display: inline-block;}
 .banner-bar .active-bar{background-color: #333;}
 .banner-box .active-img{z-index: 3;}
+.banner-1{background: url(../img/banner1.jpg) no-repeat center;background-position: center;}
+.banner-2{background: url(../img/banner2.jpg) no-repeat center;}
+.banner-3{background: url(../img/banner3.jpg) no-repeat center;}
 /*栏目介绍*/
 .column{padding-bottom: 40px;}
 .column li{width: 33.3333%;float: left;}

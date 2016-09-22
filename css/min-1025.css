@@ -4,9 +4,6 @@ html body{overflow-x: auto;min-width: 1204px;}
 html body .header,
 html body .bodymax{width: 962px;}
 html body .header .concern{width: 202px;}
-.banner-box{width: 1364px;}
-.banner ul{width: 4092px;}
-.banner ul li a{height: 376px;}
 body .main .contenr-l{width: 740px;}
 .footer .footer-r{margin: 0;float: right;width: 352px;}
 body .footer .aq{width: 65px;}

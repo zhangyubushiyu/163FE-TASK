@@ -22,5 +22,6 @@ box-sizing: border-box;border: 1px solid #d4d3d3;box-shadow: 2px 2px 2px #d4d3d3
 background-position:-155px -55px ;text-indent: 15px;}
 .kc-hover-top p span{margin-right: 4px;}
 .kc-hover-txt{padding: 20px 30px 20px 20px;height: 48px;background: #f8f8f8;}
-.kc-hover-txt{font-size: 14px;color: #666;line-height: 24px;overflow: hidden;}
+.kc-hover-txt{font-size: 14px;color: #666;line-height: 24px;overflow: hidden;width: 422px;}
 .kc-hover-txt p{white-space: inherit;text-overflow: ellipsis;overflow: hidden;height: 52px;}
+.kc-hover .kc-hover-img{width: 218px;height: 123px;overflow: hidden;float: left;}

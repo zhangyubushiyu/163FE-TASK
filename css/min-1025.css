@@ -1,0 +1,15 @@
+/*小于1205px*/
+html body{overflow-x: auto;min-width: 1204px;}
+html body .header,
+html body .bodymax{width: 948px;}
+html body .header .concern{width: 202px;}
+body .main .contenr-l{width: 726px;}
+.footer .footer-r{margin: 0;float: right;width: 352px;}
+body .footer .aq{width: 65px;}
+body .main .content-r{width: 222px;}
+.banner .banner-box{margin: 0 auto;}
+.banner ul li{width: 1364px;}
+.scroll-img{max-width: 1204px;}
+.scroll-img li img{width: 234px;}
+#clearfix{width: 2370px;}
+.page{margin-right: 20px;}

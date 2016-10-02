@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -7,14 +8,18 @@
 		<meta name="Description" content="" />
 		<meta http-equiv="Pragma" content="no-cache" />
 		<title>网易云课堂</title>
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="css/hover.css" />
-		<link rel="stylesheet" type="text/css" href="css/pop.css" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../css/hover.css" />
+		<link rel="stylesheet" type="text/css" href="../css/pop.css" />
 		<link id="minW" rel="stylesheet" type="text/css" href="" />
-		<script src="js/tool.js" type="text/javascript" charset="utf-8"></script>
+		<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		
+
 	</head>
-	<body>
+
+	<body style="overflow-x: auto;">
 
 		<div class="msg" id="msg">
 			<!--顶部提示-->
@@ -27,24 +32,24 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			//关闭顶部提示信息函数
-			(function msgFun() {
-				var msg = document.getElementById("msg"),
-					msgOff = document.getElementById("msg-off");
-				//检测看cookie是否存在
-				if(getCookie("msg") == "off") {
-					//删除节点
-					document.body.removeChild(msg);
+			//顶部微专业提示
+			(function topMgs() {
+				var msg = $('#msg-off');
+				//检测cookie是否存在
+				if($.cookie('msg') == 'feMsg') {
+					$('#msg').remove();
 				} else {
-					//不存在显示提示信息
-					msg.style.display = "block";
+					//不存在
+					$('#msg-off').click(function() {
+						//删除节点
+						$('#msg').remove();
+						//写入cookie
+						$.cookie('msg', 'feMsg', {
+							expires: 365
+						})
+					})
 				}
-				msgOff.onclick = function() {
-					//生成cookie
-					setCookie("msg", "off", setCookieDate(365));
-					//删除节点
-					document.body.removeChild(msg);
-				}
+
 			})();
 		</script>
 		<!--头部开始-->
@@ -88,14 +93,14 @@
 		<div class="banner" id="banner">
 			<div class="banner-box">
 				<ul id="banner-list" class="clearfix">
-					<li style="display: block">
-						<a class="banner-1"href="http://open.163.com/" target="_blank"></a>
+					<li style="z-index: 1;">
+						<a href="http://open.163.com/" target="_blank"><img src="../img/banner1.jpg" alt="网易公开课" /></a>
 					</li>
-					<li >
-						<a class="banner-2" href="http://study.163.com/" target="_blank"></a>
-					</li >
 					<li>
-						<a class="banner-3" href="http://www.icourse163.org/" target="_blank"></a>
+						<a href="http://study.163.com/" target="_blank"><img src="../img/banner2.jpg" alt="网易云课堂" /></a>
+					</li>
+					<li>
+						<a href="http://www.icourse163.org/" target="_blank"><img src="../img/banner3.jpg" alt="中国大学MOOC" /></a>
 					</li>
 				</ul>
 				<div class="banner-bar" id="banner-bar">
@@ -148,11 +153,11 @@
 		<!--滚动图片开始-->
 		<div class="scroll-img">
 			<ul id="clearfix">
-				<li><img src="img/scroll-1.jpg" alt="运动馆" /></li>
-				<li><img src="img/scroll-2.jpg" alt="分享" /></li>
-				<li><img src="img/scroll-3.jpg" alt="休息区" /></li>
-				<li><img src="img/scroll-4.jpg" alt="讨论会" /></li>
-				<li><img src="img/scroll-5.jpg" alt="零食" /></li>
+				<li><img src="../img/scroll-1.jpg" alt="运动馆" /></li>
+				<li><img src="../img/scroll-2.jpg" alt="分享" /></li>
+				<li><img src="../img/scroll-3.jpg" alt="休息区" /></li>
+				<li><img src="../img/scroll-4.jpg" alt="讨论会" /></li>
+				<li><img src="../img/scroll-5.jpg" alt="零食" /></li>
 			</ul>
 		</div>
 		<!--滚动图片结束-->
@@ -180,16 +185,13 @@
 					<div class="page" id="page">
 
 						<ul>
-							<div class="page-up"><a id="page-up" href="javascript:void(0)">&lt;</a></div>
+							<div class="page-up" id="page-up">&lt;</div>
 							<li>1</li>
 							<li>2</li>
 							<li>3</li>
 							<li>4</li>
 							<li>5</li>
-							<li>6</li>
-							<li>7</li>
-							<li>8</li>
-							<div class="page-down"><a id="page-down" href="javascript:void(0)">&gt;</a></div>
+							<div class="page-down" id="page-down">&gt;</div>
 						</ul>
 
 					</div>
@@ -206,7 +208,7 @@
 						<div class="video-box">
 							<p>观看下面的视频来了解吧：</p>
 							<div id="video-Play">
-								<img src="img/video-img.jpg" alt="网易云课堂介绍视频">
+								<img src="../img/video-img.jpg" alt="网易云课堂介绍视频">
 								<i></i>
 							</div>
 						</div>
@@ -288,12 +290,14 @@
 				<form id="form">
 					<div class="user-name">
 						<div class="form-div">
-							<input type="text" id="userName" name="userName" value="" placeholder="账号" />
+							<label for="userName">账号</label>
+							<input type="text" id="userName" name="userName" value="" placeholder="请输入用户名" />
 						</div>
 					</div>
 					<div class="password">
 						<div class="form-div">
-							<input type="password" name="password" id="password" placeholder="密码" />
+							<label for="password">密码</label>
+							<input type="password" name="password" id="password" placeholder="请输入密码" />
 						</div>
 						<p id="prompt"></p>
 					</div>
@@ -317,9 +321,8 @@
 			<!--视频弹窗结束-->
 		</div>
 		<!--弹窗部分结束-->
-		<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jQuery.js" type="text/javascript" charset="utf-8"></script>
 
 	</body>
 

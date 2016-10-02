@@ -11,7 +11,7 @@ for(var i = 0; i < bannerBarLi.length; i++) {
 	//定义一个下标
 	bannerBarLi[i].index = i;
 	//个BarLI添加鼠标移入事件
-	bannerBarLi[i].onclick = function() {
+	bannerBarLi[i].onmouseover = function() {
 		now = this.index;
 		//调用bannerImgLi
 		bannerTab();
@@ -24,7 +24,6 @@ function bannerTab() {
 	//控制bannerBarLi的className
 	for(var i = 0; i < bannerBarLi.length; i++) {
 		bannerBarLi[i].className = '';
-
 	}
 	bannerBarLi[now].className = 'active-bar';
 
@@ -33,14 +32,16 @@ function bannerTab() {
 		bannerImgLi[j].className = '';
 		//把其他li的opacity设置0
 		bannerImgLi[j].style.opacity = '0';
-		bannerImgLi[j].style.display = 'none';
-
 	}
+<<<<<<< HEAD:js/script.js
 <<<<<<< HEAD:js/script.js
 	bannerImgLi[now].style.display = 'block';
 =======
 //	bannerImgLi[now].className = 'active-img';
 >>>>>>> gh-pages:js/script.js
+=======
+	bannerImgLi[now].className = 'active-img';
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 	//淡入调用
 	fadeout(bannerImgLi[now], 1);
 }
@@ -67,17 +68,16 @@ banner.onmouseout = function() {
 }
 
 //向左循环滚动图片
-var scrollImg = document.getElementById('clearfix'),
-	speed = -2;
+
+var scrollImg = document.getElementById('clearfix');
+var speed = -2;
 scrollImg.innerHTML += scrollImg.innerHTML;
 
 function scroll() {
 	//复位					
 	if(scrollImg.offsetLeft < -scrollImg.offsetWidth / 2) {
 		scrollImg.style.left = '0';
-
 	}
-	
 	//设置滚动
 
 	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
@@ -87,18 +87,102 @@ var timeScroll = setInterval(scroll, 30)
 
 //鼠标事件
 <<<<<<< HEAD:js/script.js
+<<<<<<< HEAD:js/script.js
 scrollImg.onmouseover = function() {
 	clearInterval(timeScroll);
 }
 scrollImg.onmouseout = function() {
 	timeScroll = setInterval(scroll, 30)
 =======
+=======
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 scrollImg.onmouseover = function() {
 	clearInterval(timeScroll);
 }
 scrollImg.onmouseout = function() {
 	timeScroll = setInterval(scroll, 30)
+<<<<<<< HEAD:js/script.js
 >>>>>>> gh-pages:js/script.js
+=======
+
+}
+
+//登录
+var loginWin = document.getElementById("login"),
+	//获取video窗口
+	videoWin = document.getElementById("video"),
+	//获取login关闭按钮
+	loginOff = document.getElementById("login-off"),
+	//获取关注按钮
+	popLogin = document.getElementById("gz"),
+	ygz = document.getElementById("ygz"),
+	fs = document.getElementById("fs"),
+	//获取弹出窗口遮蔽层
+	popBox = document.getElementById("pop-box"),
+	//获取video播放
+	videoPlayBut = document.getElementById("videoPlay"),
+	//获取登录用户名
+	userName = document.getElementById("userName"),
+	//获取登录密码
+	Password = document.getElementById("password"),
+	//获取登录提交按钮
+	loginBut = document.getElementById("submit");
+
+//登录开始
+//登录表单验证函数
+function loginVerify() {
+	loginBut.onclick = function() {
+		var patten = /^[a-zA-Z]\w{3,15}$/ig;
+		if(patten.test(userName.value)) {
+			var form = document.getElementById("form");
+			//验证通过
+			//			alert("验证通过1");
+			ajax({
+				method: "get", //传输方式
+				url: "http://study.163.com/webDev/login.htm", //url地址
+				data: /*form.serialize(),*/ { //传的参数
+					"userName": "studyOnline",
+					"password": "study.163.com"
+				},
+				success: function(text) {
+					//成功后进这里
+					alert(text);
+					setCookie("loginSuc", "login", setCookieDate(10));
+					popLogin.style.display = "none";
+					ygz.style.display = "block";
+					fs.style.display = "block";
+
+				},
+				async: true //同步方式，true异步, false不是异步
+			});
+		} else {
+			//验正不通过
+			alert("用户名或密码不合法！");
+		}
+
+	};
+}
+
+getLoginSuc();
+//登录判断loginSuc是否存在
+function getLoginSuc() {
+	//点击关注按钮
+	popLogin.onclick = function() {
+		if(getCookie("loginSuc")) {
+			//cookie存在调用关注按钮
+		} else {
+			//弹出登录窗口函数调用
+			popOpen(popLogin, loginWin);
+			//调用登录窗口关闭按钮
+			loginOff.onclick = function() {
+				//关闭窗口函数调用
+				popOff(loginOff, loginWin);
+			};
+
+			loginVerify();
+		}
+	};
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 }
 
 //视频播放
@@ -132,23 +216,22 @@ function contenrAjax(pageNo, type, psize) {
 		url: "http://study.163.com/webDev/couresByCategory.htm", //url地址
 		data: { //传的参数
 			"pageNo": pageNo, //页数
-			"psize": psize, //条数
+			"psize": 20, //条数
 			"type": type //课程类型	10设计 20编程
 		},
 		success: function(text) {
 			contenrObj = JSON.parse(text);
 			JsonObj = contenrObj.list;
-
 			//储存课程下标
 			var jsonArr = [],
 				contenrHtml = '';
-
 			for(var i = 0; i < JsonObj.length; i++) {
 				jsonArr = [i];
 				//遍历下标
 				for(var j = 0; j < jsonArr.length; j++) {
+
 					//免费价格处理
-					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' : JsonObj[i].price = JsonObj[i].price.toFixed(2);
+					JsonObj[i].price == 0 ? JsonObj[i].price = '免费' : JsonObj[i].price.toFixed(2);
 
 					contenrHtml += '<li class="kc-list">\
 								<a href="' + JsonObj[i].providerLink + '">\
@@ -156,21 +239,24 @@ function contenrAjax(pageNo, type, psize) {
 										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" /></div>\
 										<div class="l-txt">\
 <<<<<<< HEAD:js/script.js
+<<<<<<< HEAD:js/script.js
 											<h3>' + JsonObj[i].name + '</h3>\
 											<h4>' + JsonObj[i].provider + '</h4>\
 =======
 											<h3 class="">' + JsonObj[i].name + '</h3>\
 											<h4 class="">' + JsonObj[i].provider + '</h4>\
 >>>>>>> gh-pages:js/script.js
+=======
+											<h3 class="">' + JsonObj[i].name + '</h3>\
+											<h4 class="">' + JsonObj[i].categoryName + '</h4>\
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 											<span class="span-1"><i class="learnerCount">' + JsonObj[i].learnerCount + '</i></span>\
 											<span class="span-2">￥<i class="Listprice">' + JsonObj[i].price + '</i></span>\
 										</div>\
 									</div>\
-									<div class="kc-hover" >\
+									<div class="kc-hover" id="kc-hover">\
 										<div class="kc-hover-top">\
-											<div class="kc-hover-img">\
 											<img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" />\
-											</div>\
 											<dl>\
 												<h3 class="ListName">' + JsonObj[i].name + '</h3>\
 												<dt><p><span class="learnerCount">' + JsonObj[i].learnerCount + '</span>在学</p></dt>\
@@ -178,7 +264,7 @@ function contenrAjax(pageNo, type, psize) {
 													<p>发布者：<span class="provider">' + JsonObj[i].provider + '</span></p>\
 												</dd>\
 												<dd>\
-													<p>分类：<span class="">' + JsonObj[i].provider + '</span></p>\
+													<p>分类：<span class="">' + JsonObj[i].categoryName + '</span></p>\
 												</dd>\
 											</dl>\
 										</div>\
@@ -191,9 +277,12 @@ function contenrAjax(pageNo, type, psize) {
 								</a>\
 							</li>';
 					contenrList.innerHTML = contenrHtml;
+<<<<<<< HEAD:js/script.js
 					contenrPop();
 <<<<<<< HEAD:js/script.js
 =======
+=======
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 				}
 
 			}
@@ -227,51 +316,15 @@ function contenrAjax(pageNo, type, psize) {
 			}
 			
 
-			function contenrPop() {
-				//课程鼠标悬停弹出课程详情
-				var contenrLi = getElementsByClassName(contenrList, 'kc-list'),
-					contenrHover = getElementsByClassName(contenrList, 'kc-hover'),
-					txt = getElementsByClassName(contenrList, 'l-txt'),
-					hoverindex = 0;
-
-				for(var i = 0; i < contenrLi.length; i++) {
-					contenrLi[i].index = i,
-						leaveH3 = null;
-					//鼠标移入
-					contenrLi[i].onmouseenter = function() {
-							hoverindex = this.index;
-							var txtH3 = txt[hoverindex].getElementsByTagName('h3')[0];
-							txtH3.style.color = '#39a030';
-							leaveH3 = txtH3;
-
-							for(var i = 0; i < contenrLi.length; i++) {
-								contenrHover[i].style.display = 'none';
-
-							}
-
-							//课程弹出延时
-							setTimeout(function() {
-								contenrHover[hoverindex].style.display = 'block';
-							}, 500);
-
-							return txtH3;
-
-						}
-						//鼠标移开
-					contenrLi[i].onmouseleave = function() {
-						contenrHover[hoverindex].style.display = 'none';
-						leaveH3.style.color = '';
-					}
-
-				}
-			}
-
 		},
 
 		async: true //同步方式，true异步, false不是异步
 	});
 
 }
+
+//默认加载课程列表，1为页码 10课程分类
+contenrAjax(1, 10);
 
 //翻页
 var contenrList = document.getElementById('contenr-l-list'),
@@ -290,9 +343,9 @@ function coursePage(page, type) {
 
 		//切换课程分类页码重置
 		var page = pageLi[i].className = '';
+
 		pageLi[i].onclick = function() {
-			var type = 10,
-				psize = 20;
+			var type = 10;
 			now = this.index;
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
@@ -303,16 +356,15 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
-			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
-
-			contenrAjax(now + 1, type, psize);
+			contenrAjax(now + 1, type);
 			return pageNow = now;
 		}
 		var pageNow = '';
 
 		//下一页
 		pageDown.onclick = function() {
-			pageNow++ ;
+			pageNow++;
+
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
 			}
@@ -324,6 +376,7 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
+<<<<<<< HEAD:js/script.js
 
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
@@ -332,6 +385,10 @@ function coursePage(page, type) {
 =======
 			return pageNow;
 >>>>>>> gh-pages:js/script.js
+=======
+			contenrAjax(pageNow + 1, type);
+			return pageNow;
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 		}
 
 		//上一页
@@ -350,6 +407,7 @@ function coursePage(page, type) {
 
 			//判断当前停留在哪个分类
 			design.className == 'active-checked' ? type = 10 : type = 20;
+<<<<<<< HEAD:js/script.js
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
 			contenrAjax(pageNow + 1, type, psize);
@@ -357,6 +415,10 @@ function coursePage(page, type) {
 =======
 			return pageNow;
 >>>>>>> gh-pages:js/script.js
+=======
+			contenrAjax(pageNow + 1, type);
+			return pageNow;
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js
 		}
 
 	}
@@ -369,12 +431,11 @@ var design = document.getElementById('tab-1'),
 	programme = document.getElementById('tab-2');
 
 function contenrTab() {
-	var psize = 20;
-	design.onclick = function() {
-		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
+	design.onclick = function() {
 		//切换课程类型
-		contenrAjax(1, 10, psize);
+		contenrAjax(1, 10);
+
 		//调整页码相关
 		// 1为初始化页码位置 10设计分类
 		coursePage(1, 10);
@@ -383,10 +444,8 @@ function contenrTab() {
 
 	}
 	programme.onclick = function() {
-		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
-
 		//切换课程类型
-		contenrAjax(1, 20, psize);
+		contenrAjax(1, 20);
 		//调整页码相关
 		// 1为初始化页码位置 20编程分类
 		coursePage(1, 20);
@@ -399,52 +458,33 @@ contenrTab();
 
 //热销课程列表
 function contenrHot() {
-	hotAjax: ajax({
+	ajax: ajax({
 		method: "get", //传输方式
 		url: "http://study.163.com/webDev/hotcouresByCategory.htm", //url地址
 		success: function(text) {
 			//成功后进这里
 			var hotList = JSON.parse(text)
 			var hotHmtl = '',
-				//节点
 				hotListHtml = document.getElementById('hotList');
-			var indexLength = 10,
-				hotIndex = 0;
-
-			function hotHmtlFun() {
-				for(var i = hotIndex; i < indexLength; i++) {
-					hotHmtl += '<li>\
+			for(var i = 0; i < 10; i++) {
+				hotHmtl += '<li>\
 								<a href="' + hotList[i].providerLink + '">\
-									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '" />\
+									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '">\
 									<h3>' + hotList[i].name + '</h3>\
 									<span>' + hotList[i].learnerCount + '</span>\
 								</a>\
 							</li>';
-					//插入到hmtl
-					hotListHtml.innerHTML = hotHmtl;
-
-				}
-				hotIndex++;
-				indexLength++;
+				hotListHtml.innerHTML = hotHmtl;
 
 			}
-			hotHmtlFun();
-			//热门课程循环
-			setInterval(function() {
-				if(hotIndex > 10) {
-					hotIndex = 0;
-					indexLength = 10;
-				}
-				hotHmtl = '';
-				hotHmtlFun();
-			}, 5000);
 
 		},
-		async: true, //同步方式，true异步, false不是异步
+		async: true //同步方式，true异步, false不是异步
 	});
 
 }
 
+<<<<<<< HEAD:js/script.js
 contenrHot();
 
 //检测大小屏幕
@@ -489,3 +529,6 @@ window.onresize = function() {
 
 	}
 }
+=======
+contenrHot();
+>>>>>>> parent of 2e5a4f1... 更新的master:js/201609.js

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<meta name="Keywords" content="网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！" />
+		<meta name="Keywords" content="" />
 		<meta name="Description" content="" />
 		<meta http-equiv="Pragma" content="no-cache" />
 		<title>网易云课堂</title>
@@ -11,17 +12,16 @@
 		<link rel="stylesheet" type="text/css" href="css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="css/hover.css" />
 		<link rel="stylesheet" type="text/css" href="css/pop.css" />
-		<link id="minW" rel="stylesheet" type="text/css" href="" />
-		<script src="js/tool.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/startMove.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body>
 
+	<body>
+		<!--顶部提示-->
 		<div class="msg" id="msg">
-			<!--顶部提示-->
 			<div class="msg-txt bodymax">
 				<p>
 					网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！
-					<a href="http://study.163.com/smartSpec/intro.htm#/smartSpecIntro">立即查看&gt;</a>
+					<a href="#">立即查看&gt;</a>
 					<span id="msg-off"><i></i>不再提示</span>
 				</p>
 			</div>
@@ -30,20 +30,23 @@
 			//关闭顶部提示信息函数
 			(function msgFun() {
 				var msg = document.getElementById("msg"),
-					msgOff = document.getElementById("msg-off");
+				msgOff = document.getElementById("msg-off");
 				//检测看cookie是否存在
-				if(getCookie("msg") == "off") {
-					//删除节点
-					document.body.removeChild(msg);
-				} else {
-					//不存在显示提示信息
-					msg.style.display = "block";
+				function getMsgCookie() {
+					if(getCookie("msg") == "off") {
+						//存在隐藏提示信息
+						msg.style.display = "none";
+					} else {
+						//不存在显示提示信息
+						msg.style.display = "block";
+					}
 				}
+				getMsgCookie();
 				msgOff.onclick = function() {
 					//生成cookie
 					setCookie("msg", "off", setCookieDate(365));
-					//删除节点
-					document.body.removeChild(msg);
+					//隐藏提示信息
+					msg.style.display = "none";
 				}
 			})();
 		</script>
@@ -89,17 +92,22 @@
 			<div class="banner-box">
 				<ul id="banner-list" class="clearfix">
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<li style="display: block">
 =======
 					<li>
 >>>>>>> gh-pages
 						<a class="banner-1"href="http://open.163.com/" target="_blank"></a>
+=======
+					<li class="active-img">
+						<a href="http://open.163.com/" target="_blank"><img src="img/banner1.jpg" /></a>
 					</li>
-					<li >
-						<a class="banner-2" href="http://study.163.com/" target="_blank"></a>
-					</li >
 					<li>
-						<a class="banner-3" href="http://www.icourse163.org/" target="_blank"></a>
+						<a href="http://study.163.com/" target="_blank"><img src="img/banner2.jpg" /></a>
+>>>>>>> parent of 2e5a4f1... 更新的master
+					</li>
+					<li>
+						<a href="http://www.icourse163.org/" target="_blank"><img src="img/banner3.jpg" /></a>
 					</li>
 				</ul>
 				<div class="banner-bar" id="banner-bar">
@@ -182,17 +190,21 @@
 					</div>
 					<!--课程翻页-->
 					<div class="page" id="page">
-
+						<div class="page-up" id="page-up">&lt;</div>
 						<ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 							<div class="page-up"><a id="page-up" href="javascript:void(0)">&lt;</a></div>
 =======
 							<div class="page-up" id="page-up">&lt;</div>
 >>>>>>> gh-pages
+=======
+>>>>>>> parent of 2e5a4f1... 更新的master
 							<li>1</li>
 							<li>2</li>
 							<li>3</li>
 							<li>4</li>
+<<<<<<< HEAD
 <<<<<<< HEAD
 							<li>5</li>
 							<li>6</li>
@@ -203,8 +215,14 @@
 							<li>5</li>
 							<div class="page-down" id="page-down">&gt;</div>
 >>>>>>> gh-pages
+=======
+							<li class="page-d">5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+>>>>>>> parent of 2e5a4f1... 更新的master
 						</ul>
-
+						<div class="page-down" id="page-down">&gt;</div>
 					</div>
 				</div>
 				<!--左边课程结束-->
@@ -218,10 +236,8 @@
 						</div>
 						<div class="video-box">
 							<p>观看下面的视频来了解吧：</p>
-							<div id="video-Play">
-								<img src="img/video-img.jpg" alt="网易云课堂介绍视频">
-								<i></i>
-							</div>
+							<img src="img/video-img.jpg" / alt="网易云课堂">
+							<i id="video-Play"></i>
 						</div>
 					</div>
 					<!--最热排行开始-->
@@ -230,7 +246,7 @@
 							<h2>最热排行</h2>
 						</div>
 						<ul id="hotList">
-
+							
 						</ul>
 					</div>
 					<!--最热课程结束-->
@@ -295,6 +311,7 @@
 
 		<!--弹窗部分开始-->
 		<div class="pop-box" id="pop-box">
+<<<<<<< HEAD
 			<!--登录弹窗开始-->
 			<div class="login-win" id="login">
 				<h1>登录网易云课堂</h1>
@@ -317,33 +334,46 @@
 							<label for="password">密码</label>
 							<input type="password" name="password" id="password" placeholder="请输入密码" />
 >>>>>>> gh-pages
+=======
+			<div class="popup-div">
+				<!--登录弹窗开始-->
+				<div class="login-win" id="login">
+					<h1>登录网易云课堂</h1>
+					<!--action="http://study.163.com/webDev/login.htm" method="get"-->
+					<form id="form">
+						<div class="user-name">
+							<label for=userName "">账号</label>
+							<input type="text" id="userName" name="userName" value="" />
 						</div>
-						<p id="prompt"></p>
-					</div>
+						<div class="password">
+							<label for="password">密码</label>
+							<input type="password" name="password" id="password" />
+>>>>>>> parent of 2e5a4f1... 更新的master
+						</div>
+						<div class="submit">
+							<input type="submit" id="submit" name="submit" value="登 录" />
+						</div>
+					</form>
+					<div class="off-win" id="login-off"></div>
+				</div>
+				<!--登录弹窗结束-->
 
-					<div class="submit">
-						<div id="submit">登 录</div>
-					</div>
-
-				</form>
-				<div class="off-win" id="login-off"></div>
+				<!--视频弹窗开始-->
+				<div class="video-win" id="video">
+					<h1>请观看下面的视频</h1>
+					<video id="videoPlay" controls="controls" preload="auto">
+						<source src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4"></source>
+						当前浏览器不支持 video直接播放，点击这里下载视频：
+						<a href="myvideo.webm">下载视频</a>
+					</video>
+					<div class="off-win" id="video-off"></div>
+				</div>
+				<!--视频弹窗结束-->
 			</div>
-			<!--登录弹窗结束-->
-			<!--视频弹窗开始-->
-			<div class="video-win" id="video">
-				<h1>请观看下面的视频</h1>
-				<video id="videoPlay" controls="controls" preload="auto">
-					<source src="//mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" type="video/mp4" />
-				</video>
-				<div class="off-win" id="video-off"></div>
-			</div>
-			<!--视频弹窗结束-->
 		</div>
 		<!--弹窗部分结束-->
-		<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/script.js" type="text/javascript" charset="utf-8"></script>
 
+		<script src="js/201609.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>

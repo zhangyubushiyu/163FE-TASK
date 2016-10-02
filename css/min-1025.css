@@ -1,10 +1,18 @@
 /*小于1205px*/
+<<<<<<< HEAD
+html body{overflow-x: auto;min-width: 1204px;}
+html body .header,
+html body .bodymax{width: 948px;}
+html body .header .concern{width: 202px;}
+body .main .contenr-l{width: 726px;}
+=======
 
 html body{overflow-x: auto;min-width: 1204px;}
 html body .header,
 html body .bodymax{width: 962px;}
 html body .header .concern{width: 202px;}
 body .main .contenr-l{width: 740px;}
+>>>>>>> gh-pages
 .footer .footer-r{margin: 0;float: right;width: 352px;}
 body .footer .aq{width: 65px;}
 body .main .content-r{width: 222px;}
@@ -13,4 +21,8 @@ body .main .content-r{width: 222px;}
 .scroll-img{max-width: 1204px;}
 .scroll-img li img{width: 234px;}
 #clearfix{width: 2370px;}
+<<<<<<< HEAD
+.page{margin-right: 20px;}
+=======
 .page{margin-right: 35px;}
+>>>>>>> gh-pages

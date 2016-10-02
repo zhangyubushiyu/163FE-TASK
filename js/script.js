@@ -24,6 +24,7 @@ function bannerTab() {
 	//控制bannerBarLi的className
 	for(var i = 0; i < bannerBarLi.length; i++) {
 		bannerBarLi[i].className = '';
+
 	}
 	bannerBarLi[now].className = 'active-bar';
 
@@ -32,8 +33,14 @@ function bannerTab() {
 		bannerImgLi[j].className = '';
 		//把其他li的opacity设置0
 		bannerImgLi[j].style.opacity = '0';
+		bannerImgLi[j].style.display = 'none';
+
 	}
+<<<<<<< HEAD:js/script.js
+	bannerImgLi[now].style.display = 'block';
+=======
 //	bannerImgLi[now].className = 'active-img';
+>>>>>>> gh-pages:js/script.js
 	//淡入调用
 	fadeout(bannerImgLi[now], 1);
 }
@@ -70,6 +77,7 @@ function scroll() {
 		scrollImg.style.left = '0';
 
 	}
+	
 	//设置滚动
 
 	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
@@ -78,11 +86,19 @@ function scroll() {
 var timeScroll = setInterval(scroll, 30)
 
 //鼠标事件
+<<<<<<< HEAD:js/script.js
 scrollImg.onmouseover = function() {
 	clearInterval(timeScroll);
 }
 scrollImg.onmouseout = function() {
 	timeScroll = setInterval(scroll, 30)
+=======
+scrollImg.onmouseover = function() {
+	clearInterval(timeScroll);
+}
+scrollImg.onmouseout = function() {
+	timeScroll = setInterval(scroll, 30)
+>>>>>>> gh-pages:js/script.js
 }
 
 //视频播放
@@ -122,6 +138,7 @@ function contenrAjax(pageNo, type, psize) {
 		success: function(text) {
 			contenrObj = JSON.parse(text);
 			JsonObj = contenrObj.list;
+
 			//储存课程下标
 			var jsonArr = [],
 				contenrHtml = '';
@@ -138,8 +155,13 @@ function contenrAjax(pageNo, type, psize) {
 									<div class="kc">\
 										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" /></div>\
 										<div class="l-txt">\
+<<<<<<< HEAD:js/script.js
+											<h3>' + JsonObj[i].name + '</h3>\
+											<h4>' + JsonObj[i].provider + '</h4>\
+=======
 											<h3 class="">' + JsonObj[i].name + '</h3>\
 											<h4 class="">' + JsonObj[i].provider + '</h4>\
+>>>>>>> gh-pages:js/script.js
 											<span class="span-1"><i class="learnerCount">' + JsonObj[i].learnerCount + '</i></span>\
 											<span class="span-2">￥<i class="Listprice">' + JsonObj[i].price + '</i></span>\
 										</div>\
@@ -170,6 +192,8 @@ function contenrAjax(pageNo, type, psize) {
 							</li>';
 					contenrList.innerHTML = contenrHtml;
 					contenrPop();
+<<<<<<< HEAD:js/script.js
+=======
 				}
 
 			}
@@ -196,11 +220,51 @@ function contenrAjax(pageNo, type, psize) {
 					//鼠标移开
 				contenrLi[i].onmouseleave = function() {
 					contenrHover[hoverindex].style.display = 'none';
+>>>>>>> gh-pages:js/script.js
 				}
 
 			}
 			}
 			
+
+			function contenrPop() {
+				//课程鼠标悬停弹出课程详情
+				var contenrLi = getElementsByClassName(contenrList, 'kc-list'),
+					contenrHover = getElementsByClassName(contenrList, 'kc-hover'),
+					txt = getElementsByClassName(contenrList, 'l-txt'),
+					hoverindex = 0;
+
+				for(var i = 0; i < contenrLi.length; i++) {
+					contenrLi[i].index = i,
+						leaveH3 = null;
+					//鼠标移入
+					contenrLi[i].onmouseenter = function() {
+							hoverindex = this.index;
+							var txtH3 = txt[hoverindex].getElementsByTagName('h3')[0];
+							txtH3.style.color = '#39a030';
+							leaveH3 = txtH3;
+
+							for(var i = 0; i < contenrLi.length; i++) {
+								contenrHover[i].style.display = 'none';
+
+							}
+
+							//课程弹出延时
+							setTimeout(function() {
+								contenrHover[hoverindex].style.display = 'block';
+							}, 500);
+
+							return txtH3;
+
+						}
+						//鼠标移开
+					contenrLi[i].onmouseleave = function() {
+						contenrHover[hoverindex].style.display = 'none';
+						leaveH3.style.color = '';
+					}
+
+				}
+			}
 
 		},
 
@@ -248,8 +312,7 @@ function coursePage(page, type) {
 
 		//下一页
 		pageDown.onclick = function() {
-			pageNow++;
-
+			pageNow++ ;
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
 			}
@@ -265,7 +328,10 @@ function coursePage(page, type) {
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
 			contenrAjax(pageNow + 1, type, psize);
+<<<<<<< HEAD:js/script.js
+=======
 			return pageNow;
+>>>>>>> gh-pages:js/script.js
 		}
 
 		//上一页
@@ -287,7 +353,10 @@ function coursePage(page, type) {
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
 			contenrAjax(pageNow + 1, type, psize);
+<<<<<<< HEAD:js/script.js
+=======
 			return pageNow;
+>>>>>>> gh-pages:js/script.js
 		}
 
 	}
@@ -405,7 +474,10 @@ timerBody = setInterval(function() {
 
 window.onresize = function() {
 	if(document.body.offsetWidth <= 1205) {
+<<<<<<< HEAD:js/script.js
+=======
 		//			console.log('小屏');
+>>>>>>> gh-pages:js/script.js
 		minCss.href = 'css/min-1025.css';
 		contenrAjax(1, 10, 15);
 

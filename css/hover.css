@@ -1,7 +1,6 @@
 .msg-txt p span:hover{cursor: pointer;}
 .gz:hover{background-color: #2fb556;}
 .nav li a:hover{color: #2FB556;}
-<<<<<<< HEAD
 .header .search:hover{background-position: -151px -23px;}
 .column-v a:hover,.footer-r a:hover{text-decoration: underline;}
 .contenr-l-list li:hover,.hot:hover,.video:hover{border: 1px solid #dedcdc;}
@@ -10,18 +9,6 @@
 #qxgz:hover{color: #21A557;text-decoration: underline;}
 
 .kc-hover{overflow: hidden;position: absolute;left: -10px;top: -10px;width: 475px;height: 244px;z-index: 2;
-=======
-.header .search:hover{background-position: -151px -24px;}
-.column-v a:hover,.footer-r a:hover{text-decoration: underline;}
-.contenr-l-list li:hover,.hot:hover,.video:hover{border: 1px solid #dedcdc;}
-.contenr-l-list h3:hover{color: #39a030;}
-.page li:hover{color: #fff;background-color: #9dd8b1;}
-.page-down:hover,.page-up:hover{cursor: pointer;}
-
-#qxgz:hover{color: #21A557;text-decoration: underline;}
-
-.kc-hover{position: absolute;left: -10px;top: -10px;width: 475px;height: 244px;z-index: 2;
->>>>>>> gh-pages
 box-sizing: border-box;border: 1px solid #d4d3d3;box-shadow: 2px 2px 2px #d4d3d3;display: none;}
 .kc-hover-top{height: 124px;background: #fff;color: #666;padding: 10px 20px 20px 10px;}
 .kc-hover-top img{width: 218px;height: 123px;margin-right: 20px;display: inline-block;}
@@ -34,9 +21,5 @@ background-position:-155px -55px ;text-indent: 15px;}
 .kc-hover-top p span{margin-right: 4px;}
 .kc-hover-txt{padding: 20px 30px 20px 20px;height: 48px;background: #f8f8f8;}
 .kc-hover-txt{font-size: 14px;color: #666;line-height: 24px;overflow: hidden;width: 422px;}
-<<<<<<< HEAD
 .kc-hover-txt p{white-space: inherit;text-overflow: ellipsis;overflow: hidden;height: 48px;}
-=======
-.kc-hover-txt p{white-space: inherit;text-overflow: ellipsis;overflow: hidden;height: 52px;}
->>>>>>> gh-pages
 .kc-hover .kc-hover-img{width: 218px;height: 123px;overflow: hidden;float: left;}

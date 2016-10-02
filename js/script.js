@@ -1,3 +1,4 @@
+
 //banner轮播
 var bannerImg = document.getElementById('banner-list'),
 	bannerImgLi = bannerImg.getElementsByTagName('li'),
@@ -35,7 +36,11 @@ function bannerTab() {
 		bannerImgLi[j].style.display = 'none';
 
 	}
+<<<<<<< HEAD:js/script.js
 	bannerImgLi[now].style.display = 'block';
+=======
+//	bannerImgLi[now].className = 'active-img';
+>>>>>>> gh-pages:js/script.js
 	//淡入调用
 	fadeout(bannerImgLi[now], 1);
 }
@@ -74,17 +79,26 @@ function scroll() {
 	}
 	
 	//设置滚动
+
 	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
 }
 //计时器
 var timeScroll = setInterval(scroll, 30)
 
 //鼠标事件
+<<<<<<< HEAD:js/script.js
 scrollImg.onmouseover = function() {
 	clearInterval(timeScroll);
 }
 scrollImg.onmouseout = function() {
 	timeScroll = setInterval(scroll, 30)
+=======
+scrollImg.onmouseover = function() {
+	clearInterval(timeScroll);
+}
+scrollImg.onmouseout = function() {
+	timeScroll = setInterval(scroll, 30)
+>>>>>>> gh-pages:js/script.js
 }
 
 //视频播放
@@ -141,8 +155,13 @@ function contenrAjax(pageNo, type, psize) {
 									<div class="kc">\
 										<div class="l-img"><img class="middlePhotoUrl" src="' + JsonObj[i].middlePhotoUrl + '" alt="' + JsonObj[i].name + '" /></div>\
 										<div class="l-txt">\
+<<<<<<< HEAD:js/script.js
 											<h3>' + JsonObj[i].name + '</h3>\
 											<h4>' + JsonObj[i].provider + '</h4>\
+=======
+											<h3 class="">' + JsonObj[i].name + '</h3>\
+											<h4 class="">' + JsonObj[i].provider + '</h4>\
+>>>>>>> gh-pages:js/script.js
 											<span class="span-1"><i class="learnerCount">' + JsonObj[i].learnerCount + '</i></span>\
 											<span class="span-2">￥<i class="Listprice">' + JsonObj[i].price + '</i></span>\
 										</div>\
@@ -173,9 +192,40 @@ function contenrAjax(pageNo, type, psize) {
 							</li>';
 					contenrList.innerHTML = contenrHtml;
 					contenrPop();
+<<<<<<< HEAD:js/script.js
+=======
 				}
 
 			}
+			function contenrPop(){
+				//课程鼠标悬停弹出课程详情
+			var contenrLi = getElementsByClassName(contenrList, 'kc-list'),
+				contenrHover = getElementsByClassName(contenrList, 'kc-hover'),
+				 hoverindex = 0;
+				
+			for(var i = 0; i < contenrLi.length; i++) {
+				contenrLi[i].index = i;
+				//鼠标移入
+				contenrLi[i].onmouseenter = function() {
+						hoverindex = this.index;
+						for(var i = 0; i < contenrLi.length; i++) {
+							contenrHover[i].style.display = 'none';
+						}
+						//课程弹出延时
+						setTimeout(function() {
+							contenrHover[hoverindex].style.display = 'block';
+						}, 500);
+
+					}
+					//鼠标移开
+				contenrLi[i].onmouseleave = function() {
+					contenrHover[hoverindex].style.display = 'none';
+>>>>>>> gh-pages:js/script.js
+				}
+
+			}
+			}
+			
 
 			function contenrPop() {
 				//课程鼠标悬停弹出课程详情
@@ -278,6 +328,10 @@ function coursePage(page, type) {
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
 			contenrAjax(pageNow + 1, type, psize);
+<<<<<<< HEAD:js/script.js
+=======
+			return pageNow;
+>>>>>>> gh-pages:js/script.js
 		}
 
 		//上一页
@@ -299,6 +353,10 @@ function coursePage(page, type) {
 			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
 			contenrAjax(pageNow + 1, type, psize);
+<<<<<<< HEAD:js/script.js
+=======
+			return pageNow;
+>>>>>>> gh-pages:js/script.js
 		}
 
 	}
@@ -416,6 +474,10 @@ timerBody = setInterval(function() {
 
 window.onresize = function() {
 	if(document.body.offsetWidth <= 1205) {
+<<<<<<< HEAD:js/script.js
+=======
+		//			console.log('小屏');
+>>>>>>> gh-pages:js/script.js
 		minCss.href = 'css/min-1025.css';
 		contenrAjax(1, 10, 15);
 

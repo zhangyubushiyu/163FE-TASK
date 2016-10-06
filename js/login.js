@@ -1,5 +1,4 @@
 //登录
-
 //登录开始
 
 var loginWin = document.getElementById("login"),
@@ -26,8 +25,12 @@ var loginWin = document.getElementById("login"),
 
 //登录判断loginSuc是否存在
 function getLoginSuc() {
-	//点击关注按钮
-	popLogin.onclick = function() {
+	
+	//自动登录
+	 getLoginCookie();
+	 
+	//登录关注cookie判断
+	function getLoginCookie(){
 		if(getCookie("followSuc")) {
 			//cookie存在调用关注按钮
 
@@ -37,18 +40,35 @@ function getLoginSuc() {
 			ygz.style.display = "block";
 			//显示目前粉丝数量
 			fs.style.display = "block";
+			removeFocus();
 		} else {
-			//弹出登录窗口函数调用
-			popOpen(popLogin, loginWin);
+			
 			//调用登录窗口关闭按钮
 			loginOff.onclick = function() {
 				//关闭窗口函数调用
 				popOff(loginOff, loginWin);
 			};
-
+			//取消关注
 			loginFun();
 		}
+	}
+	//点击关注按钮
+	popLogin.onclick = function() {
+		getLoginCookie();
+		//弹出登录窗口函数调用
+		popOpen(popLogin, loginWin);
 	};
+
+	function removeFocus() {
+		var Focus = document.getElementById('qxgz');
+		Focus.onclick = function() {
+			//删除关注cookie
+			deleteCookie('followSuc');
+			
+			popLogin.style.display='block';
+			ygz.style.display='none';
+		}
+	}
 }
 
 getLoginSuc();
@@ -88,7 +108,7 @@ function loginFun() {
 					prompt.innerHTML = '用户名符合';
 					prompt.style.color = '#189f36';
 					userVerify = true;
-					loginBut.disabled=false;
+					loginBut.disabled = false;
 				} else {
 					prompt.innerHTML = '用户名不合法！请输入5-12位用户名！';
 					prompt.style.color = '';
@@ -97,19 +117,19 @@ function loginFun() {
 				}
 
 			}
-		//密码输入框失去焦点开始验证
+			//密码输入框失去焦点开始验证
 		paword.onblur = function() {
 			if(paword.value.length >= 6 && userName.value.length > 5 && userName.value.length < 12) {
 				prompt.innerHTML = '用户名和密码符合';
 				prompt.style.color = '#189f36';
 				pawordVerify = true;
-				loginBut.disabled=false;
+				loginBut.disabled = false;
 			} else if(userName.value.length > 5 && userName.value.length < 12) {
 				prompt.innerHTML = '用户名不合法！请输入3-12位用户名！';
 				prompt.style.color = '';
 				userVerify = false;
 
-			}else{
+			} else {
 				prompt.innerHTML = '密码不符合！请输入6位以上密码！';
 				prompt.style.color = '';
 				pawordVerify = false;
@@ -124,8 +144,8 @@ function loginFun() {
 		//执行验证
 		clickVerify();
 		if(userVerify && pawordVerify) {
-			
-			loginBut.disabled=false;
+
+			loginBut.disabled = false;
 			ajax({
 				method: "get", //传输方式
 				url: "http://study.163.com/webDev/login.htm", //url地址
@@ -137,14 +157,14 @@ function loginFun() {
 				success: function(text) {
 					if(text == 0) {
 						//登录不成功
-						popBox.style.display='block';
-						loginWin.style.display='block';
+						popBox.style.display = 'block';
+						loginWin.style.display = 'block';
 						prompt.style.display = 'block';
 						prompt.style.color = 'red';
 						prompt.innerHTML = '登录失败！用户名或密码错误请重新登录。';
 					} else {
 						//登录成功
-						
+
 						//写入登录成功cookie
 						setCookie("loginSuc", "login", setCookieDate(10));
 						//关闭登录窗口
@@ -165,28 +185,27 @@ function loginFun() {
 						});
 						//显示目前粉丝数量
 						fs.style.display = "block";
-						
+
 					}
 				},
 
 			});
-		} else if(userName.value ==''){
+		} else if(userName.value == '') {
 			//表单验证为空提示信息
 			prompt.style.display = 'block';
 			prompt.innerHTML = '用户名或密码不能为空！';
 
 			//阻止表单提交
-			loginBut.disabled=true;
+			loginBut.disabled = true;
 
-		}else{
+		} else {
 			//提示错误
 			prompt.style.display = 'block';
 			prompt.innerHTML = '用户名或密码有误，请从新输入！';
-			
+
 			//阻止表单提交
-			loginBut.disabled=true;
+			loginBut.disabled = true;
 		}
 	};
 
 }
-

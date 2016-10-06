@@ -137,6 +137,12 @@ function getCookie(name) {
 	}
 	return cookieValue;
 }
+//删除cookie
+function deleteCookie(name) {
+	var date = new Date();
+	date.setTime(date.getTime() - 10000);
+	document.cookie = name + "=v; expires=" + date.toGMTString();
+}
 
 //创建方法
 //setCookie("user","章鱼哥",setCookieDate(7));
@@ -258,5 +264,3 @@ function getElementsByClassName(ele, name) {
 		return elements;
 	}
 }
-
-	

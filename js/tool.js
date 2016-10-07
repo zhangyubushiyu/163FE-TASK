@@ -1,24 +1,3 @@
-//批量获取class
-function getByClass(oParent, sClass) {
-	var aEle = oParent.getElementsByClassName('*'),
-		aResult = [];
-	for(var i = 0; i < aResult.length; i++) {
-		if(aEle[i].className = sClass) {
-			aResult.push(aEle[i]);
-		}
-	}
-	return aResult;
-}
-
-//设置CSS
-function getStyle(obj, name) {
-	if(obj.currentStyle) {
-		return obj.currentStyle[name];
-	} else {
-		return getComputedStyle(obj, false)[name];
-	}
-}
-
 //设置动画
 //srtraMove(id , {width:400, height:400} , fu)
 function srtarMove(obj, json, fu) {
@@ -291,12 +270,12 @@ function getElementsByClassName(ele, name) {
 
 var setSort = {
 	li: function(id, ele, sort) {
-		var id = document.getElementById(id),
-			ele1 = id.getElementsByClassName(ele), //根据什么排序
+		var objId = document.getElementById(id),
+			ele1 =getElementsByClassName(objId,ele), //根据什么排序
 			arr = [];
 		for(var i = 0; i < ele1.length; i++) {
 			//遍历到数组中
-			arr[i] = id.getElementsByClassName(ele)[i];
+			arr[i] = getElementsByClassName(objId,ele)[i];
 		}
 		//排序数组
 		//排序类型判断
@@ -317,33 +296,8 @@ var setSort = {
 		}
 		//把排序好的数组重新插入
 		for(var i = 0; i < arr.length; i++) {
-			id.appendChild(arr[i].parentNode.parentNode);
-		}
-	},
-	tab: function(tabId, index, sort) {
-		var tabId = document.getElementById(tabId),
-			tr = tabId.tBodies[0].rows, //需要排的元素
-			arr = [];
-		for(var i = 0; i < tr.length; i++) {
-			arr[i] = tr[i];
-		}
-		if(sort == 'sort') {
-			//降序
-			arr.sort(function(a, b) {
-				var a1 = parseInt(a.cells[index].innerHTML),
-					b1 = parseInt(b.cells[index].innerHTML);
-				return b1 - a1;
-			})
-		} else {
-			//升序
-			arr.sort(function(a, b) {
-				var a1 = parseInt(a.cells[index].innerHTML),
-					b1 = parseInt(b.cells[index].innerHTML);
-				return a1 - b1;
-			})
-		}
-		for(var i = 0; i < arr.length; i++) {
-			tabId.tBodies[0].appendChild(arr[i]);
+			objId.appendChild(arr[i].parentNode.parentNode);
 		}
 	}
+	
 }

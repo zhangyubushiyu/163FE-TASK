@@ -25,12 +25,12 @@ var loginWin = document.getElementById("login"),
 
 //登录判断loginSuc是否存在
 function getLoginSuc() {
-	
+
 	//自动登录
-	 getLoginCookie();
-	 
+	getLoginCookie();
+
 	//登录关注cookie判断
-	function getLoginCookie(){
+	function getLoginCookie() {
 		if(getCookie("followSuc")) {
 			//cookie存在调用关注按钮
 
@@ -40,18 +40,19 @@ function getLoginSuc() {
 			ygz.style.display = "block";
 			//显示目前粉丝数量
 			fs.style.display = "block";
+			//调用取消关注
 			removeFocus();
 		} else {
-			
 			//调用登录窗口关闭按钮
 			loginOff.onclick = function() {
 				//关闭窗口函数调用
 				popOff(loginOff, loginWin);
 			};
-			//取消关注
+			//登录
 			loginFun();
 		}
 	}
+
 	//点击关注按钮
 	popLogin.onclick = function() {
 		getLoginCookie();
@@ -59,17 +60,18 @@ function getLoginSuc() {
 		popOpen(popLogin, loginWin);
 	};
 
-	function removeFocus() {
-		var Focus = document.getElementById('qxgz');
-		Focus.onclick = function() {
-			//删除关注cookie
-			deleteCookie('followSuc');
-			
-			popLogin.style.display='block';
-			ygz.style.display='none';
-		}
+}
+//取消关注函数
+function removeFocus() {
+	var Focus = document.getElementById('qxgz');
+	Focus.onclick = function() {
+		//删除关注cookie
+		deleteCookie('followSuc');
+		popLogin.style.display = 'block';
+		ygz.style.display = 'none';
 	}
 }
+removeFocus();
 
 getLoginSuc();
 

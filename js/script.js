@@ -1,99 +1,102 @@
 //banner轮播
-var bannerImg = document.getElementById('banner-list'),
-	bannerImgLi = bannerImg.getElementsByTagName('li'),
-	bannerBarLi = document.getElementById('banner-bar').getElementsByTagName('i'),
-	banner = document.getElementById('banner');
+function banner() {
+	//节点获取
+	var bannerImg = document.getElementById('banner-list'),
+		bannerImgLi = bannerImg.getElementsByTagName('li'),
+		bannerBarLi = document.getElementById('banner-bar').getElementsByTagName('i'),
+		banner = document.getElementById('banner');
 
-var now = 0;
-//遍历bannerBarLi
-for(var i = 0; i < bannerBarLi.length; i++) {
-	//定义一个下标
-	bannerBarLi[i].index = i;
-	//个BarLI添加鼠标移入事件
-	bannerBarLi[i].onclick = function() {
-		now = this.index;
-		//调用bannerImgLi
-		bannerTab();
-
-	}
-
-}
-
-function bannerTab() {
-	//控制bannerBarLi的className
+	var now = 0;
+	//遍历bannerBarLi
 	for(var i = 0; i < bannerBarLi.length; i++) {
-		bannerBarLi[i].className = '';
-
+		//定义一个下标
+		bannerBarLi[i].index = i;
+		//个BarLI添加鼠标移入事件
+		bannerBarLi[i].onclick = function() {
+			now = this.index;
+			//调用bannerImgLi
+			bannerTab();
+		}
 	}
-	bannerBarLi[now].className = 'active-bar';
 
-	//控制bannerImgLi的className
-	for(var j = 0; j < bannerImgLi.length; j++) {
-		bannerImgLi[j].className = '';
-		//把其他li的opacity设置0
-		bannerImgLi[j].style.opacity = '0';
-		bannerImgLi[j].style.display = 'none';
+	function bannerTab() {
+		//控制bannerBarLi的className
+		for(var i = 0; i < bannerBarLi.length; i++) {
+			bannerBarLi[i].className = '';
+		}
+		bannerBarLi[now].className = 'active-bar';
+		//控制bannerImgLi的className
+		for(var j = 0; j < bannerImgLi.length; j++) {
+			bannerImgLi[j].className = '';
+			//把其他li的opacity设置0
+			bannerImgLi[j].style.opacity = '0';
+			bannerImgLi[j].style.display = 'none';
 
+		}
+		bannerImgLi[now].style.display = 'block';
+		//淡入调用
+		fadeout(bannerImgLi[now], 1);
+	};
+
+	//自动播发函数
+	function next() {
+		//		alert();
+		now++;
+		//判断bannerBarLi目前的位置
+		if(now == bannerBarLi.length) {
+			now = 0;
+		}
+		bannerTab();
 	}
-	bannerImgLi[now].style.display = 'block';
-	//淡入调用
-	fadeout(bannerImgLi[now], 1);
+
+	//计时器
+	var bannerTeimr = setInterval(next, 5000);
+	//鼠标移入清除计时器
+	banner.onmouseover = function() {
+			clearInterval(bannerTeimr);
+		}
+		//鼠标离开从启计时器
+	banner.onmouseout = function() {
+		bannerTeimr = setInterval(next, 5000);
+	}
+
 }
-
-//自动播发函数
-function next() {
-	now++;
-	//判断bannerBarLi目前的位置
-	if(now == bannerBarLi.length) {
-		now = 0;
-	}
-	bannerTab();
-}
-
-//计时器
-var teimr = setInterval(next, 5000);
-//鼠标移入清除计时器
-banner.onmouseover = function() {
-		clearInterval(teimr);
-	}
-	//鼠标离开从启计时器
-banner.onmouseout = function() {
-	teimr = setInterval(next, 5000);
-}
+banner();
 
 //向左循环滚动图片
-var scrollImg = document.getElementById('clearfix'),
-	speed = -2;
-scrollImg.innerHTML += scrollImg.innerHTML;
-
 function scroll() {
-	//复位					
-	if(scrollImg.offsetLeft < -scrollImg.offsetWidth / 2) {
-		scrollImg.style.left = '0';
+	var scrollImg = document.getElementById('clearfix'),
+		speed = -2,
+		scrollImgHtml = scrollImg.innerHTML;
+	scrollImg.innerHTML += scrollImg.innerHTML + scrollImgHtml;
 
+	function scrollImgFun() {
+		//复位					
+		if(scrollImg.offsetLeft < -scrollImg.offsetWidth / 3) {
+			scrollImg.style.left = '0';
+		}
+		//设置滚动
+		scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
 	}
+	//计时器
+	var timeScroll = setInterval(scrollImgFun, 30);
 
-	//设置滚动
-	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
+	//鼠标事件
+	scrollImg.onmouseover = function() {
+		clearInterval(timeScroll);
+	}
+	scrollImg.onmouseout = function() {
+		timeScroll = setInterval(scrollImgFun, 30)
+	}
 }
-//计时器
-var timeScroll = setInterval(scroll, 30)
-
-//鼠标事件
-scrollImg.onmouseover = function() {
-	clearInterval(timeScroll);
-}
-scrollImg.onmouseout = function() {
-	timeScroll = setInterval(scroll, 30)
-}
-
-//视频播放
-var videoOff = document.getElementById("video-off"),
-	//获取弹出video按钮
-	popVideo = document.getElementById("video-Play");
+scroll();
 
 //视频播放函数
 function videoPlay() {
+	var videoOff = document.getElementById("video-off"),
+		//获取弹出video按钮
+		popVideo = document.getElementById("video-Play");
+
 	popVideo.onclick = function() {
 		//弹出窗口
 		popOpen(popVideo, videoWin);
@@ -306,11 +309,10 @@ function coursePage(page, type) {
 }
 coursePage();
 
-//切换课程
-var design = document.getElementById('tab-1'),
-	programme = document.getElementById('tab-2');
-
 function contenrTab() {
+	var design = document.getElementById('tab-1'),
+		programme = document.getElementById('tab-2');
+
 	var psize = 20;
 	design.onclick = function() {
 		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
@@ -362,11 +364,8 @@ function contenrHot() {
 							</li>';
 					//插入到hmtl
 					hotListHtml.innerHTML = hotHmtl;
-					//排序
+					//排序 
 					setSort.li('hotList', 'hto-span', 'sort');
-					var hotListScroll = document.getElementById('hotList');
-
-					hotListScroll.innerHTML += hotListScroll.innerHTML;
 
 				}
 
@@ -388,6 +387,7 @@ function hotListScrollFun() {
 	//滚动
 	var hotListScroll = document.getElementById('hotList');
 	var hotSpeed = 0;
+	hotListScroll.innerHTML += hotListScroll.innerHTML;
 
 	function hotscroll() {
 		//复位					
@@ -403,7 +403,6 @@ function hotListScrollFun() {
 	//鼠标事件
 	hotListScroll.onmouseover = function() {
 		clearInterval(timeHotScroll);
-		
 	}
 	hotListScroll.onmouseout = function() {
 		timeHotScroll = setInterval(hotscroll, 5000)
@@ -411,38 +410,41 @@ function hotListScrollFun() {
 }
 
 //检测大小屏幕
-
-var minCss = document.getElementById('minW');
-if(document.body.offsetWidth <= 1205) {
-
-	minCss.href = 'css/min-1025.css';
-	//课程加载每页15条
-	contenrAjax(1, 10, 15);
-
-} else {
-	//默认加载课程列表，1为页码 10课程分类
-	//课程加载每页20条
-	contenrAjax(1, 10, 20);
-}
-
-var timerBody;
-timerBody = setInterval(function() {
+function maxMinscreen() {
+	var minCss = document.getElementById('minW');
 	if(document.body.offsetWidth <= 1205) {
+		//加载小屏css
 		minCss.href = 'css/min-1025.css';
-
-	} else {
-		minCss.href = '';
-	}
-}, 500);
-
-window.onresize = function() {
-	if(document.body.offsetWidth <= 1205) {
-		minCss.href = 'css/min-1025.css';
+		//课程加载每页15条
 		contenrAjax(1, 10, 15);
 
 	} else {
-		minCss.href = '';
+		//默认加载课程列表，1为页码 10课程分类
+		//课程加载每页20条
 		contenrAjax(1, 10, 20);
+	}
 
+	var timerBody;
+	timerBody = setInterval(function() {
+		if(document.body.offsetWidth <= 1205) {
+			minCss.href = 'css/min-1025.css';
+
+		} else {
+			minCss.href = '';
+		}
+	}, 500);
+	
+	//监听窗口大小
+	window.onresize = function() {
+		if(document.body.offsetWidth <= 1205) {
+			minCss.href = 'css/min-1025.css';
+			contenrAjax(1, 10, 15);
+
+		} else {
+			minCss.href = '';
+			contenrAjax(1, 10, 20);
+
+		}
 	}
 }
+maxMinscreen();

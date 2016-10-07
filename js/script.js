@@ -266,6 +266,7 @@ function coursePage(page, type) {
 		//下一页
 		pageDown.onclick = function() {
 			pageNow++;
+			console.log(pageNow);
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
 			}
@@ -305,41 +306,39 @@ function coursePage(page, type) {
 		}
 
 	}
-
-}
-coursePage();
-
-function contenrTab() {
 	var design = document.getElementById('tab-1'),
 		programme = document.getElementById('tab-2');
 
-	var psize = 20;
-	design.onclick = function() {
-		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+	function contenrTab() {
 
-		//切换课程类型
-		contenrAjax(1, 10, psize);
-		//调整页码相关
-		// 1为初始化页码位置 10设计分类
-		coursePage(1, 10);
-		design.className = 'active-checked';
-		programme.className = '';
+		var psize = 20;
+		design.onclick = function() {
+			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
 
+			//切换课程类型
+			contenrAjax(1, 10, psize);
+			//调整页码相关
+			// 1为初始化页码位置 10设计分类
+			coursePage(1, 10);
+			design.className = 'active-checked';
+			programme.className = '';
+
+		}
+		programme.onclick = function() {
+			document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
+			//切换课程类型
+			contenrAjax(1, 20, psize);
+			//调整页码相关
+			// 1为初始化页码位置 20编程分类
+			coursePage(1, 20);
+			design.className = '';
+			programme.className = 'active-checked';
+
+		}
 	}
-	programme.onclick = function() {
-		document.body.offsetWidth < 1205 ? psize = 15 : psize = 20;
-
-		//切换课程类型
-		contenrAjax(1, 20, psize);
-		//调整页码相关
-		// 1为初始化页码位置 20编程分类
-		coursePage(1, 20);
-		design.className = '';
-		programme.className = 'active-checked';
-
-	}
+	contenrTab();
 }
-contenrTab();
+coursePage();
 
 //热销课程列表
 function contenrHot() {
@@ -433,7 +432,7 @@ function maxMinscreen() {
 			minCss.href = '';
 		}
 	}, 500);
-	
+
 	//监听窗口大小
 	window.onresize = function() {
 		if(document.body.offsetWidth <= 1205) {

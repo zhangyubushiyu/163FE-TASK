@@ -264,3 +264,86 @@ function getElementsByClassName(ele, name) {
 		return elements;
 	}
 }
+
+//热门课程排序封装
+
+/*
+ * setSort函数排序使用方法
+ * 两个方法li() tab()
+ * 参数均是字符串类型
+ * 
+ * li()
+ * 主要参数
+ * id---排序元素父级id
+ * ele---根据什么排序	传入class名
+ * 可选参数
+ * sort---排序类型 不带默认为升序 带这个参数为降序
+ * 
+ * tab()
+ * 主要参数
+ * tabId---table的id
+ * index---td哪个下标为参照	 
+ * 可选参数
+ * sort---排序类型 不带默认为升序 带这个参数为降序
+ * 
+ * v.1.00
+ */
+
+var setSort = {
+	li: function(id, ele, sort) {
+		var id = document.getElementById(id),
+			ele1 = id.getElementsByClassName(ele), //根据什么排序
+			arr = [];
+		for(var i = 0; i < ele1.length; i++) {
+			//遍历到数组中
+			arr[i] = id.getElementsByClassName(ele)[i];
+		}
+		//排序数组
+		//排序类型判断
+		if(sort == 'sort') {
+			//降序
+			arr.sort(function(a, b) {
+				var a1 = parseInt(a.innerHTML),
+					b1 = parseInt(b.innerHTML);
+				return b1 - a1;
+			});
+		} else {
+			//升序
+			arr.sort(function(a, b) {
+				var a1 = parseInt(a.innerHTML),
+					b1 = parseInt(b.innerHTML);
+				return a1 - b1;
+			});
+		}
+		//把排序好的数组重新插入
+		for(var i = 0; i < arr.length; i++) {
+			id.appendChild(arr[i].parentNode.parentNode);
+		}
+	},
+	tab: function(tabId, index, sort) {
+		var tabId = document.getElementById(tabId),
+			tr = tabId.tBodies[0].rows, //需要排的元素
+			arr = [];
+		for(var i = 0; i < tr.length; i++) {
+			arr[i] = tr[i];
+		}
+		if(sort == 'sort') {
+			//降序
+			arr.sort(function(a, b) {
+				var a1 = parseInt(a.cells[index].innerHTML),
+					b1 = parseInt(b.cells[index].innerHTML);
+				return b1 - a1;
+			})
+		} else {
+			//升序
+			arr.sort(function(a, b) {
+				var a1 = parseInt(a.cells[index].innerHTML),
+					b1 = parseInt(b.cells[index].innerHTML);
+				return a1 - b1;
+			})
+		}
+		for(var i = 0; i < arr.length; i++) {
+			tabId.tBodies[0].appendChild(arr[i]);
+		}
+	}
+}

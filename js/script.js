@@ -72,7 +72,7 @@ function scroll() {
 		scrollImg.style.left = '0';
 
 	}
-	
+
 	//设置滚动
 	scrollImg.style.left = scrollImg.offsetLeft + speed + 'px';
 }
@@ -262,7 +262,7 @@ function coursePage(page, type) {
 
 		//下一页
 		pageDown.onclick = function() {
-			pageNow++ ;
+			pageNow++;
 			for(var i = 0; i < pageLi.length; i++) {
 				pageLi[i].className = '';
 			}
@@ -350,36 +350,30 @@ function contenrHot() {
 			var hotHmtl = '',
 				//节点
 				hotListHtml = document.getElementById('hotList');
-			var indexLength = 10,
-				hotIndex = 0;
 
 			function hotHmtlFun() {
-				for(var i = hotIndex; i < indexLength; i++) {
+				for(var i = 0; i < hotList.length; i++) {
 					hotHmtl += '<li>\
 								<a href="' + hotList[i].providerLink + '">\
 									<img src="' + hotList[i].smallPhotoUrl + '" alt="' + hotList[i].name + '" />\
 									<h3>' + hotList[i].name + '</h3>\
-									<span>' + hotList[i].learnerCount + '</span>\
+									<span class="hto-span">' + hotList[i].learnerCount + '</span>\
 								</a>\
 							</li>';
 					//插入到hmtl
 					hotListHtml.innerHTML = hotHmtl;
+					//排序
+					setSort.li('hotList', 'hto-span', 'sort');
+					var hotListScroll = document.getElementById('hotList');
+
+					hotListScroll.innerHTML += hotListScroll.innerHTML;
 
 				}
-				hotIndex++;
-				indexLength++;
 
 			}
 			hotHmtlFun();
-			//热门课程循环
-			setInterval(function() {
-				if(hotIndex > 10) {
-					hotIndex = 0;
-					indexLength = 10;
-				}
-				hotHmtl = '';
-				hotHmtlFun();
-			}, 5000);
+			//热门排序
+			hotListScrollFun();
 
 		},
 		async: true, //同步方式，true异步, false不是异步
@@ -388,6 +382,33 @@ function contenrHot() {
 }
 
 contenrHot();
+
+function hotListScrollFun() {
+	//热门课程循环
+	//滚动
+	var hotListScroll = document.getElementById('hotList');
+	var hotSpeed = 0;
+
+	function hotscroll() {
+		//复位					
+		if(hotListScroll.offsetTop < -hotListScroll.offsetHeight / 2) {
+			hotSpeed = 0;
+		}
+		//设置滚动
+		hotSpeed = hotSpeed + -70;
+		hotListScroll.style.top = hotSpeed + 'px';
+	}
+	//计时器 
+	var timeHotScroll = setInterval(hotscroll, 5000);
+	//鼠标事件
+	hotListScroll.onmouseover = function() {
+		clearInterval(timeHotScroll);
+		
+	}
+	hotListScroll.onmouseout = function() {
+		timeHotScroll = setInterval(hotscroll, 5000)
+	}
+}
 
 //检测大小屏幕
 
@@ -418,8 +439,6 @@ window.onresize = function() {
 	if(document.body.offsetWidth <= 1205) {
 		minCss.href = 'css/min-1025.css';
 		contenrAjax(1, 10, 15);
-
-		//		}
 
 	} else {
 		minCss.href = '';

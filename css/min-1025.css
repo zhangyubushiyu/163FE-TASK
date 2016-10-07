@@ -2,7 +2,7 @@
 html body{overflow-x: auto;min-width: 1204px;}
 html body .header,
 html body .bodymax{width: 948px;}
-html body .header .concern{width: 202px;}
+html body .header .concern{width: 180px;}
 body .main .contenr-l{width: 726px;}
 .footer .footer-r{margin: 0;float: right;width: 352px;}
 body .footer .aq{width: 65px;}

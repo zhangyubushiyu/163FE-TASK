@@ -394,18 +394,18 @@ function hotListScrollFun() {
 			hotSpeed = 0;
 		}
 		//设置滚动
-		hotSpeed = hotSpeed + -70;
-		hotListScroll.style.top = hotSpeed + 'px';
+			hotSpeed--;
+			hotListScroll.style.top = hotSpeed + 'px';
 	}
 	//计时器 
-	var timeHotScroll = setInterval(hotscroll, 5000);
+	var timeHotScroll = setInterval(hotscroll, 60);
 	//鼠标事件
-	hotListScroll.onmouseover = function() {
-		clearInterval(timeHotScroll);
-	}
-	hotListScroll.onmouseout = function() {
-		timeHotScroll = setInterval(hotscroll, 5000)
-	}
+		hotListScroll.onmouseover = function() {
+			clearInterval(timeHotScroll);
+		}
+		hotListScroll.onmouseout = function() {
+			timeHotScroll = setInterval(hotscroll, 60)
+		}
 }
 
 //检测大小屏幕
@@ -447,3 +447,19 @@ function maxMinscreen() {
 	}
 }
 maxMinscreen();
+function addd(){
+	var a = 0,
+		hotSpeed=0;
+	setInterval(function() {
+		
+	
+	for(var i = 70; i > 0, i--;) {
+		hotSpeed = i;
+		
+		console.log(i);
+
+	}
+}, 70);
+};
+//addd();
+
